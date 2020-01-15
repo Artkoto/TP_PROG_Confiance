@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE why3session PUBLIC "-//Why3//proof session v5//EN"
+"http://why3.lri.fr/why3session.dtd">
+<why3session shape_version="5">
+<prover id="0" name="Z3" version="4.7.1" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="1" name="Alt-Ergo" version="2.2.0" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="2" name="CVC4" version="1.6" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="3" name="Z3" version="4.8.4" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="4" name="Alt-Ergo" version="2.3.0" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="5" name="Z3" version="4.8.4" alternative="counterexamples" timelimit="1" steplimit="0" memlimit="1000"/>
+<file>
+<path name=".."/>
+<path name="tp1.mlw"/>
+<theory name="Ex0Test" proved="true">
+ <goal name="VC test0" expl="VC for test0" proved="true">
+ <proof prover="2"><result status="valid" time="0.01"/></proof>
+ </goal>
+ <goal name="VC test1" expl="VC for test1" proved="true">
+ <proof prover="2"><result status="valid" time="0.01"/></proof>
+ </goal>
+ <goal name="VC test2" expl="VC for test2" proved="true">
+ <proof prover="2"><result status="valid" time="0.01"/></proof>
+ </goal>
+ <goal name="VC test3" expl="VC for test3" proved="true">
+ <proof prover="2"><result status="valid" time="0.01"/></proof>
+ </goal>
+ <goal name="VC test4" expl="VC for test4" proved="true">
+ <proof prover="2"><result status="valid" time="0.01"/></proof>
+ <transf name="split_vc" proved="true" >
+  <goal name="VC test4.0" expl="assertion" proved="true">
+  <proof prover="2"><result status="valid" time="0.00"/></proof>
+  </goal>
+ </transf>
+ </goal>
+</theory>
+<theory name="Ex1" proved="true">
+ <goal name="VC mauvaismax" expl="VC for mauvaismax" proved="true">
+ <proof prover="2"><result status="valid" time="0.01"/></proof>
+ </goal>
+ <goal name="VC max" expl="VC for max" proved="true">
+ <proof prover="2"><result status="valid" time="0.01"/></proof>
+ </goal>
+ <goal name="VC max2" expl="VC for max2" proved="true">
+ <proof prover="2"><result status="valid" time="0.01"/></proof>
+ </goal>
+ <goal name="VC min" expl="VC for min" proved="true">
+ <proof prover="2"><result status="valid" time="0.01"/></proof>
+ </goal>
+</theory>
+<theory name="Ex1Test">
+ <goal name="VC test1" expl="VC for test1">
+ <proof prover="0"><result status="unknown" time="0.02"/></proof>
+ <proof prover="1"><result status="unknown" time="0.01"/></proof>
+ <proof prover="2"><result status="unknown" time="0.03"/></proof>
+ <proof prover="3"><result status="unknown" time="0.02"/></proof>
+ <proof prover="4"><result status="unknown" time="0.00"/></proof>
+ </goal>
+ <goal name="VC test2" expl="VC for test2" proved="true">
+ <proof prover="2"><result status="valid" time="0.01"/></proof>
+ </goal>
+ <goal name="VC test3" expl="VC for test3" proved="true">
+ <proof prover="2"><result status="valid" time="0.01"/></proof>
+ </goal>
+ <goal name="VC test4" expl="VC for test4" proved="true">
+ <proof prover="2"><result status="valid" time="0.01"/></proof>
+ </goal>
+ <goal name="VC test5" expl="VC for test5" proved="true">
+ <proof prover="2"><result status="valid" time="0.01"/></proof>
+ </goal>
+ <goal name="VC test6" expl="VC for test6" proved="true">
+ <proof prover="2"><result status="valid" time="0.01"/></proof>
+ </goal>
+</theory>
+<theory name="Ex2" proved="true">
+ <goal name="VC absq3" expl="VC for absq3" proved="true">
+ <proof prover="2"><result status="valid" time="0.02"/></proof>
+ </goal>
+ <goal name="VC absq4" expl="VC for absq4" proved="true">
+ <proof prover="2"><result status="valid" time="0.01"/></proof>
+ </goal>
+ <goal name="VC absq5" expl="VC for absq5" proved="true">
+ <proof prover="0" obsolete="true"><result status="unknown" time="0.01"/></proof>
+ <proof prover="1" obsolete="true"><result status="unknown" time="0.01"/></proof>
+ <proof prover="2"><result status="valid" time="0.01"/></proof>
+ </goal>
+ <goal name="VC absq6" expl="VC for absq6" proved="true">
+ <proof prover="0" obsolete="true"><result status="unknown" time="0.01"/></proof>
+ <proof prover="1" obsolete="true"><result status="unknown" time="0.01"/></proof>
+ <proof prover="2"><result status="valid" time="0.01"/></proof>
+ </goal>
+ <goal name="VC absq7" expl="VC for absq7" proved="true">
+ <proof prover="2"><result status="valid" time="0.01"/></proof>
+ </goal>
+</theory>
+<theory name="Ex2Test">
+ <goal name="VC test1" expl="VC for test1">
+ <proof prover="0"><result status="unknown" time="0.02"/></proof>
+ <proof prover="1"><result status="unknown" time="0.01"/></proof>
+ <proof prover="2"><result status="unknown" time="0.03"/></proof>
+ <proof prover="3"><result status="unknown" time="0.01"/></proof>
+ <proof prover="4"><result status="unknown" time="0.00"/></proof>
+ </goal>
+ <goal name="VC test2" expl="VC for test2">
+ <proof prover="0"><result status="unknown" time="0.01"/></proof>
+ <proof prover="1"><result status="unknown" time="0.01"/></proof>
+ <proof prover="2"><result status="unknown" time="0.03"/></proof>
+ <proof prover="3"><result status="unknown" time="0.04"/></proof>
+ <proof prover="4"><result status="unknown" time="0.01"/></proof>
+ </goal>
+ <goal name="VC test3" expl="VC for test3">
+ <proof prover="0"><result status="unknown" time="0.02"/></proof>
+ <proof prover="1"><result status="unknown" time="0.01"/></proof>
+ <proof prover="2"><result status="unknown" time="0.03"/></proof>
+ <proof prover="3"><result status="unknown" time="0.02"/></proof>
+ <proof prover="4"><result status="unknown" time="0.01"/></proof>
+ </goal>
+ <goal name="VC test4" expl="VC for test4" proved="true">
+ <proof prover="0" obsolete="true"><result status="unknown" time="0.02"/></proof>
+ <proof prover="1" obsolete="true"><result status="unknown" time="0.01"/></proof>
+ <proof prover="2"><result status="valid" time="0.01"/></proof>
+ </goal>
+ <goal name="VC test5" expl="VC for test5" proved="true">
+ <proof prover="2"><result status="valid" time="0.01"/></proof>
+ </goal>
+ <goal name="VC test6" expl="VC for test6" proved="true">
+ <proof prover="0" obsolete="true"><result status="unknown" time="0.01"/></proof>
+ <proof prover="1" obsolete="true"><result status="unknown" time="0.01"/></proof>
+ <proof prover="2"><result status="valid" time="0.01"/></proof>
+ </goal>
+</theory>
+<theory name="Ex3" proved="true">
+ <goal name="VC boucle" expl="VC for boucle" proved="true">
+ <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+ <proof prover="1" obsolete="true"><result status="unknown" time="0.01"/></proof>
+ <proof prover="2" obsolete="true"><result status="valid" time="0.01"/></proof>
+ <proof prover="4" obsolete="true"><result status="unknown" time="0.01"/></proof>
+ <proof prover="5" obsolete="true"><result status="valid" time="0.01"/></proof>
+ <transf name="split_vc" proved="true" >
+  <goal name="VC boucle.0" expl="loop invariant init" proved="true">
+  <proof prover="2"><result status="valid" time="0.01"/></proof>
+  </goal>
+  <goal name="VC boucle.1" expl="loop variant decrease" proved="true">
+  <proof prover="2"><result status="valid" time="0.01"/></proof>
+  </goal>
+  <goal name="VC boucle.2" expl="loop invariant preservation" proved="true">
+  <proof prover="2"><result status="valid" time="0.01"/></proof>
+  </goal>
+  <goal name="VC boucle.3" expl="assertion" proved="true">
+  <proof prover="2"><result status="valid" time="0.00"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="unknown" time="0.02"/></proof>
+  </goal>
+  <goal name="VC boucle.4" expl="postcondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.00"/></proof>
+  </goal>
+ </transf>
+ </goal>
+ <goal name="VC boucle_q3" expl="VC for boucle_q3" proved="true">
+ <proof prover="2"><result status="valid" time="0.01"/></proof>
+ <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+ <proof prover="4" obsolete="true"><result status="unknown" time="0.01"/></proof>
+ <transf name="split_vc" proved="true" >
+  <goal name="VC boucle_q3.0" expl="loop invariant init" proved="true">
+  <proof prover="2"><result status="valid" time="0.01"/></proof>
+  </goal>
+  <goal name="VC boucle_q3.1" expl="loop variant decrease" proved="true">
+  <proof prover="2"><result status="valid" time="0.01"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="unknown" time="0.03"/></proof>
+  </goal>
+  <goal name="VC boucle_q3.2" expl="loop invariant preservation" proved="true">
+  <proof prover="2"><result status="valid" time="0.00"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="unknown" time="0.03"/></proof>
+  </goal>
+  <goal name="VC boucle_q3.3" expl="assertion" proved="true">
+  <proof prover="2"><result status="valid" time="0.00"/></proof>
+  </goal>
+  <goal name="VC boucle_q3.4" expl="postcondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.01"/></proof>
+  </goal>
+ </transf>
+ </goal>
+</theory>
+<theory name="Ex3Test" proved="true">
+ <goal name="VC test" expl="VC for test" proved="true">
+ <proof prover="2"><result status="valid" time="0.01"/></proof>
+ </goal>
+</theory>
+<theory name="Ex4" proved="true">
+ <goal name="VC calcul" expl="VC for calcul" proved="true">
+ <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+ <proof prover="1" obsolete="true"><result status="unknown" time="0.01"/></proof>
+ <proof prover="2"><result status="valid" time="0.00"/></proof>
+ <proof prover="4" obsolete="true"><result status="unknown" time="0.01"/></proof>
+ <proof prover="5"><result status="valid" time="0.01"/></proof>
+ <transf name="split_vc" proved="true" >
+  <goal name="VC calcul.0" expl="loop invariant init" proved="true">
+  <proof prover="2"><result status="valid" time="0.01"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="unknown" time="0.03"/></proof>
+  </goal>
+  <goal name="VC calcul.1" expl="loop variant decrease" proved="true">
+  <proof prover="2"><result status="valid" time="0.00"/></proof>
+  </goal>
+  <goal name="VC calcul.2" expl="loop invariant preservation" proved="true">
+  <proof prover="2"><result status="valid" time="0.00"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="unknown" time="0.02"/></proof>
+  </goal>
+  <goal name="VC calcul.3" expl="postcondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.01"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="unknown" time="0.02"/></proof>
+  </goal>
+ </transf>
+ </goal>
+</theory>
+</file>
+</why3session>
