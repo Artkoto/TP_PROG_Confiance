@@ -1,0 +1,173 @@
+module Ex1
+  use int.Int
+  use ref.Ref
+
+  let f1 () : int 
+  ensures {result = 100}
+  =
+    let n = ref 0 in
+    while !n < 100  do
+    invariant {0 <= !n <= 100 }
+    variant { 100 - !n }
+      n := !n + 1
+      
+      
+    done;
+    !n
+
+  let f2 () : int 
+  
+    ensures {result = 0}
+  =
+    let n = ref 100 in
+    while !n > 0  do
+     invariant {0 <= !n <= 100 }
+    variant { !n }
+      n := !n - 1
+    done;
+    !n
+
+end
+
+module Ex2
+  use int.Int
+  use ref.Ref
+  use ref.Refint
+  use array.Array
+  use array.ArraySum
+
+  let somme_tab (a: array int) : int
+  
+  requires { forall n:int. (0 <= n < length a ) -> (a[n] >= 0)} 
+  ensures {result = sum a 0 (length a )  }
+  =
+  
+  let somme = ref 0 in
+  for i = 0 to (length a - 1 ) do 
+       invariant { !somme = sum a 0 i } 
+       somme := !somme + a[i]
+       done; 
+       !somme 
+
+end
+
+module Ex2Test
+  use Ex2
+  use array.Array
+  
+  (* a completer *)
+  let test2() 
+  =
+   let a1 = make 4 1 in 
+   let temp = somme_tab a1 in
+   assert {temp = 4} 
+  
+
+end
+
+module Ex3
+  use int.Int
+  use ref.Refint
+ 
+  let division (a b: int) : int
+
+
+  requires { 0 < a && 0 < b  }
+  ensures { result >= 0 && result <= a }
+  ensures { exists r :int. (0 <= r < b) && (r = a - result * b)}
+  
+  =
+  
+  let div = ref 0 in
+  let rest = ref a in
+  
+  while  (!rest >= b) do
+  
+ invariant { a = (b * !div + !rest) }
+ invariant { 0 <= !rest }
+ invariant { !div <= a}
+  
+  variant {!rest}
+  
+  div := !div + 1;
+  rest := !rest - b
+  
+  
+   done;
+   
+   !div
+
+
+end
+
+
+module Ex3Tests
+  use int.Int
+  use Ex3
+  
+  let mon_test () =
+    let q = division 12 3 in
+      assert { q  = 4 }
+
+  let mon_test1 () = 
+    let q2 = division 13 3 in
+      assert { q2  = 4 }
+
+  let mon_test2 () =
+    let q = division 100 4 in
+      assert { q  = 25 }
+
+
+end
+
+module Ex4
+  use mach.int.Int
+  use ref.Refint
+  use ref.Ref
+  use number.Gcd
+
+  val pgcd (a b: int) : int
+  requires { a >= 0 && b >= 0 }
+  ensures { result >= 1 }
+  ensures { result <= a && result <= b }
+  ensures { exists i :int. (1<= i) && (a = result*i) }
+  ensures { exists j :int.  (1<=j) && (b = result*j)} 
+  ensures { result = gcd a b }
+
+end
+
+module Ex4Test
+  use ref.Refint
+  use Ex4
+
+  (* a completer *)
+  
+  let mon_test () =
+    let temp = pgcd 40 8 in
+      assert { temp  =  8}
+
+  let mon_test1 () = 
+    let temp = pgcd 20 3 in
+      assert { temp  = 1 }
+
+  let mon_test2 () =
+    let temp = pgcd 100 4 in
+      assert { temp  = 4 }
+      
+  let mon_test3 () =
+    let temp = pgcd 80 48 in
+      assert { temp  =  16}
+
+  let mon_test4 () = 
+    let temp = pgcd 5 3 in
+      assert { temp  = 1 }
+
+  let mon_test5 () =
+    let temp = pgcd 66 92 in
+      assert { temp  = 2}
+      
+  let mon_test6 () =
+    let temp = pgcd 10000 1000 in
+      assert { temp  = 1000}
+
+end
