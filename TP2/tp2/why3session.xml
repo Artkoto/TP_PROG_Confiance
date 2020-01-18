@@ -8,6 +8,7 @@
 <prover id="3" name="Z3" version="4.8.4" alternative="counterexamples" timelimit="1" steplimit="0" memlimit="1000"/>
 <prover id="4" name="CVC3" version="2.4.1" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="5" name="Z3" version="4.8.4" alternative="noBV" timelimit="5" steplimit="0" memlimit="1000"/>
+<prover id="6" name="Spass" version="3.7" timelimit="1" steplimit="0" memlimit="1000"/>
 <file>
 <path name=".."/>
 <path name="tp2.mlw"/>
@@ -95,40 +96,126 @@
  <proof prover="2"><result status="valid" time="0.01"/></proof>
  </goal>
 </theory>
-<theory name="Ex4Test">
+<theory name="Ex4">
+ <goal name="VC pgcd" expl="VC for pgcd">
+ <proof prover="0"><result status="timeout" time="1.00"/></proof>
+ <proof prover="1"><result status="timeout" time="1.00"/></proof>
+ <proof prover="2"><result status="timeout" time="1.00"/></proof>
+ <proof prover="6"><result status="timeout" time="1.00"/></proof>
+ <transf name="split_all_full" >
+  <goal name="VC pgcd.0" expl="postcondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.03"/></proof>
+  </goal>
+  <goal name="VC pgcd.1" expl="postcondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.05"/></proof>
+  </goal>
+  <goal name="VC pgcd.2" expl="loop invariant init" proved="true">
+  <proof prover="2"><result status="valid" time="0.02"/></proof>
+  </goal>
+  <goal name="VC pgcd.3" expl="loop invariant init" proved="true">
+  <proof prover="2"><result status="valid" time="0.08"/></proof>
+  </goal>
+  <goal name="VC pgcd.4" expl="loop invariant init" proved="true">
+  <proof prover="2"><result status="valid" time="0.08"/></proof>
+  </goal>
+  <goal name="VC pgcd.5" expl="loop variant decrease">
+  <proof prover="0"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00"/></proof>
+  <proof prover="2"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6"><result status="timeout" time="1.00"/></proof>
+  </goal>
+  <goal name="VC pgcd.6" expl="loop invariant preservation" proved="true">
+  <proof prover="0"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" timelimit="5" memlimit="2000"><result status="timeout" time="5.00"/></proof>
+  <proof prover="2" timelimit="5" memlimit="2000"><result status="timeout" time="5.00"/></proof>
+  <proof prover="6" timelimit="5" memlimit="2000"><result status="valid" time="4.94"/></proof>
+  </goal>
+  <goal name="VC pgcd.7" expl="loop invariant preservation" proved="true">
+  <proof prover="2"><result status="valid" time="0.02"/></proof>
+  </goal>
+  <goal name="VC pgcd.8" expl="loop invariant preservation" proved="true">
+  <proof prover="2"><result status="valid" time="0.03"/></proof>
+  </goal>
+  <goal name="VC pgcd.9" expl="loop variant decrease">
+  <proof prover="0"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00"/></proof>
+  <proof prover="2"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6"><result status="timeout" time="1.00"/></proof>
+  </goal>
+  <goal name="VC pgcd.10" expl="loop invariant preservation" proved="true">
+  <proof prover="0"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00"/></proof>
+  <proof prover="2" timelimit="5" memlimit="2000"><result status="valid" time="1.30"/></proof>
+  <proof prover="6"><result status="timeout" time="1.00"/></proof>
+  </goal>
+  <goal name="VC pgcd.11" expl="loop invariant preservation" proved="true">
+  <proof prover="2"><result status="valid" time="0.03"/></proof>
+  </goal>
+  <goal name="VC pgcd.12" expl="loop invariant preservation" proved="true">
+  <proof prover="2"><result status="valid" time="0.12"/></proof>
+  </goal>
+  <goal name="VC pgcd.13" expl="loop variant decrease">
+  <proof prover="0"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00"/></proof>
+  <proof prover="2"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6"><result status="timeout" time="1.00"/></proof>
+  </goal>
+  <goal name="VC pgcd.14" expl="loop invariant preservation" proved="true">
+  <proof prover="1"><result status="timeout" time="1.00"/></proof>
+  <proof prover="2"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6"><result status="valid" time="0.21"/></proof>
+  </goal>
+  <goal name="VC pgcd.15" expl="loop invariant preservation" proved="true">
+  <proof prover="2"><result status="valid" time="0.12"/></proof>
+  </goal>
+  <goal name="VC pgcd.16" expl="loop invariant preservation" proved="true">
+  <proof prover="2"><result status="valid" time="0.02"/></proof>
+  </goal>
+  <goal name="VC pgcd.17" expl="loop variant decrease">
+  <proof prover="0"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00"/></proof>
+  <proof prover="2"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6"><result status="timeout" time="1.00"/></proof>
+  </goal>
+  <goal name="VC pgcd.18" expl="loop invariant preservation" proved="true">
+  <proof prover="1"><result status="timeout" time="1.00"/></proof>
+  <proof prover="2"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6"><result status="valid" time="0.22"/></proof>
+  </goal>
+  <goal name="VC pgcd.19" expl="loop invariant preservation" proved="true">
+  <proof prover="2"><result status="valid" time="0.04"/></proof>
+  </goal>
+  <goal name="VC pgcd.20" expl="loop invariant preservation" proved="true">
+  <proof prover="2"><result status="valid" time="0.02"/></proof>
+  </goal>
+  <goal name="VC pgcd.21" expl="postcondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.14"/></proof>
+  </goal>
+ </transf>
+ </goal>
+</theory>
+<theory name="Ex4Test" proved="true">
  <goal name="VC mon_test" expl="VC for mon_test" proved="true">
- <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
- <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
- <proof prover="2"><result status="valid" time="0.22"/></proof>
+ <proof prover="2"><result status="valid" time="0.23"/></proof>
  </goal>
  <goal name="VC mon_test1" expl="VC for mon_test1" proved="true">
- <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
- <proof prover="1"><result status="valid" time="0.06" steps="12"/></proof>
+ <proof prover="1"><result status="valid" time="0.01" steps="47"/></proof>
  <proof prover="2"><result status="timeout" time="1.00"/></proof>
  </goal>
  <goal name="VC mon_test2" expl="VC for mon_test2" proved="true">
- <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
- <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
- <proof prover="2"><result status="valid" time="0.23"/></proof>
+ <proof prover="2"><result status="valid" time="0.21"/></proof>
  </goal>
- <goal name="VC mon_test3" expl="VC for mon_test3">
- <proof prover="0"><result status="timeout" time="1.00"/></proof>
- <proof prover="1"><result status="timeout" time="1.00"/></proof>
- <proof prover="2"><result status="timeout" time="1.00"/></proof>
+ <goal name="VC mon_test3" expl="VC for mon_test3" proved="true">
+ <proof prover="0" obsolete="true"><undone/></proof>
+ <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
+ <proof prover="2"><result status="valid" time="0.03"/></proof>
  </goal>
  <goal name="VC mon_test4" expl="VC for mon_test4" proved="true">
- <proof prover="1"><result status="valid" time="0.02" steps="12"/></proof>
- <proof prover="2"><result status="timeout" time="1.00"/></proof>
- </goal>
- <goal name="VC mon_test5" expl="VC for mon_test5">
- <proof prover="0"><result status="timeout" time="1.00"/></proof>
- <proof prover="1"><result status="timeout" time="1.00"/></proof>
+ <proof prover="1"><result status="valid" time="0.01" steps="47"/></proof>
  <proof prover="2"><result status="timeout" time="1.00"/></proof>
  </goal>
  <goal name="VC mon_test6" expl="VC for mon_test6" proved="true">
- <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
- <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
- <proof prover="2"><result status="valid" time="0.21"/></proof>
+ <proof prover="2"><result status="valid" time="0.23"/></proof>
  </goal>
 </theory>
 </file>
