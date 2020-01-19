@@ -29,6 +29,7 @@ module Ex1
 
 end
 
+(*######################################################*)
 module Ex2
   use int.Int
   use ref.Ref
@@ -65,6 +66,7 @@ module Ex2Test
 
 end
 
+(*##############################################################*)
 module Ex3
   use int.Int
   use ref.Refint
@@ -120,6 +122,7 @@ module Ex3Tests
 
 end
 
+(*#################################################################*)
 module Ex4
   use mach.int.Int
   use ref.Refint
@@ -129,16 +132,17 @@ module Ex4
   let pgcd (a b: int) : int
   
   requires { 0 <= a && 0 <= b }
+  requires { 0 < a || 0 < b }
   ensures { result = gcd a b }
   
   =
  
  let x = ref a in 
  let y = ref b in 
- let r = ref (a+b) in 
+ let xPlusY = ref (!x + !y) in 
     
-  if !y = 0 then !x 
-  else if !x = 0 then !y  
+  if a = 0 then b 
+  else if b = 0 then a  
   
   else begin 
   while (!x <> !y) 
@@ -148,29 +152,22 @@ module Ex4
   invariant {gcd !x !y = gcd a b }
   invariant { gcd a b <= !y }
   invariant { gcd a b <= !x}
-  variant{!r - gcd !x !y}
+  variant{!xPlusY }
   
   if !x > !y then begin
+  
   x    := !x - !y 
   end
   else begin  
   y   := !y - !x
+  end  ;
   
-  end ;
-  
-  if !x > !y then begin
-  r    := !x ;
-  end
-  else begin  
-  r   := !y ;   
-  end 
-  
+  xPlusY   := !x + !y;
   
   done ;
   
   !x
   end 
-  
 end
 
 module Ex4Test
