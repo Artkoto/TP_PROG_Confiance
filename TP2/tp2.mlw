@@ -144,7 +144,6 @@ module Ex4
   
  let x = ref a in 
  let y = ref b in 
- let xPlusY = ref (!x + !y) in 
  
   while (!x <> !y) 
   
@@ -153,7 +152,7 @@ module Ex4
   invariant {gcd !x !y = gcd a b }
   invariant { gcd a b <= !y }
   invariant { gcd a b <= !x}
-  variant{!xPlusY }
+  variant{!x + !y}
   
   if !x > !y then begin
   
@@ -161,9 +160,7 @@ module Ex4
   end
   else begin  
   y   := !y - !x
-  end  ;
-  
-  xPlusY   := !x + !y;
+  end 
   
   done ;
   

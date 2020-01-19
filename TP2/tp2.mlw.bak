@@ -137,14 +137,15 @@ module Ex4
   
   =
  
+ if a = 0 then b 
+  else if b = 0 then a 
+ 
+  else begin 
+  
  let x = ref a in 
  let y = ref b in 
- let xPlusY = ref (!x + !y) in 
-    
-  if a = 0 then b 
-  else if b = 0 then a  
-  
-  else begin 
+ (*let xPlusY = ref (!x + !y) in *)
+ 
   while (!x <> !y) 
   
   do
@@ -152,7 +153,8 @@ module Ex4
   invariant {gcd !x !y = gcd a b }
   invariant { gcd a b <= !y }
   invariant { gcd a b <= !x}
-  variant{!xPlusY }
+  (*variant{!xPlusY }*)
+  variant{!x + !y}
   
   if !x > !y then begin
   
@@ -160,9 +162,9 @@ module Ex4
   end
   else begin  
   y   := !y - !x
-  end  ;
+  end  (*;
   
-  xPlusY   := !x + !y;
+  xPlusY   := !x + !y;*)
   
   done ;
   

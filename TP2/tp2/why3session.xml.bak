@@ -10,7 +10,7 @@
 <prover id="5" name="Z3" version="4.8.4" alternative="noBV" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="6" name="Spass" version="3.7" timelimit="5" steplimit="0" memlimit="1000"/>
 <prover id="7" name="Eprover" version="1.9" timelimit="5" steplimit="0" memlimit="1000"/>
-<file>
+<file proved="true">
 <path name=".."/>
 <path name="tp2.mlw"/>
 <theory name="Ex1" proved="true">
@@ -97,14 +97,14 @@
  <proof prover="2"><result status="valid" time="0.01"/></proof>
  </goal>
 </theory>
-<theory name="Ex4">
- <goal name="VC pgcd" expl="VC for pgcd">
- <proof prover="0"><result status="timeout" time="1.00"/></proof>
- <proof prover="1"><result status="timeout" time="1.00"/></proof>
- <proof prover="2"><result status="timeout" time="1.00"/></proof>
- <proof prover="6" timelimit="1"><result status="timeout" time="1.00"/></proof>
+<theory name="Ex4" proved="true">
+ <goal name="VC pgcd" expl="VC for pgcd" proved="true">
+ <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+ <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
+ <proof prover="2" obsolete="true"><result status="timeout" time="1.00"/></proof>
+ <proof prover="6" timelimit="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
  <proof prover="7" obsolete="true"><result status="highfailure" time="0.00"/></proof>
- <transf name="split_all_full" >
+ <transf name="split_all_full" proved="true" >
   <goal name="VC pgcd.0" expl="postcondition" proved="true">
   <proof prover="2"><result status="valid" time="0.04"/></proof>
   </goal>
@@ -120,49 +120,49 @@
   <goal name="VC pgcd.4" expl="loop invariant init" proved="true">
   <proof prover="2"><result status="valid" time="0.06"/></proof>
   </goal>
-  <goal name="VC pgcd.5" expl="loop variant decrease">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00"/></proof>
-  <proof prover="2"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6" timelimit="1"><result status="timeout" time="1.00"/></proof>
-  <transf name="split_all_full" >
-   <goal name="VC pgcd.5.0" expl="VC for pgcd">
-   <proof prover="0" timelimit="5" memlimit="2000"><result status="timeout" time="5.00"/></proof>
-   <proof prover="1" timelimit="5" memlimit="2000"><result status="timeout" time="5.00"/></proof>
-   <proof prover="2" timelimit="5" memlimit="2000"><result status="timeout" time="5.00"/></proof>
-   <proof prover="6" memlimit="2000"><result status="timeout" time="5.00"/></proof>
-   <transf name="introduce_premises" >
-    <goal name="VC pgcd.5.0.0" expl="VC for pgcd">
-    <transf name="inline_goal" >
-     <goal name="VC pgcd.5.0.0.0" expl="VC for pgcd">
-     <proof prover="0" timelimit="30" memlimit="4000"><result status="timeout" time="30.00"/></proof>
-     <proof prover="1" timelimit="30" memlimit="4000"><result status="timeout" time="30.00"/></proof>
-     <proof prover="2" timelimit="30" memlimit="4000"><result status="timeout" time="30.00"/></proof>
-     <proof prover="6" timelimit="30" memlimit="4000"><result status="timeout" time="30.00"/></proof>
+  <goal name="VC pgcd.5" expl="loop variant decrease" proved="true">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" timelimit="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <transf name="split_all_full" proved="true" >
+   <goal name="VC pgcd.5.0" expl="VC for pgcd" proved="true">
+   <proof prover="2"><result status="valid" time="0.03"/></proof>
+   </goal>
+   <goal name="VC pgcd.5.1" expl="VC for pgcd" proved="true">
+   <proof prover="2"><result status="valid" time="0.03"/></proof>
+   </goal>
+   <goal name="VC pgcd.5.2" expl="VC for pgcd" proved="true">
+   <proof prover="0" timelimit="5" memlimit="2000" obsolete="true"><result status="timeout" time="5.00"/></proof>
+   <proof prover="1" timelimit="5" memlimit="2000" obsolete="true"><result status="timeout" time="5.00"/></proof>
+   <proof prover="2" timelimit="5" memlimit="2000" obsolete="true"><result status="timeout" time="5.00"/></proof>
+   <proof prover="6" memlimit="2000" obsolete="true"><result status="timeout" time="5.00"/></proof>
+   <transf name="introduce_premises" proved="true" >
+    <goal name="VC pgcd.5.2.0" expl="VC for pgcd" proved="true">
+    <transf name="inline_goal" proved="true" >
+     <goal name="VC pgcd.5.2.0.0" expl="VC for pgcd" proved="true">
+     <proof prover="0" timelimit="30" memlimit="4000" obsolete="true"><result status="failure" time="0.00"/></proof>
+     <proof prover="1" timelimit="30" memlimit="4000" obsolete="true"><result status="timeout" time="30.00"/></proof>
+     <proof prover="2"><result status="valid" time="0.04"/></proof>
+     <proof prover="6" timelimit="30" memlimit="4000" obsolete="true"><result status="timeout" time="30.00"/></proof>
      </goal>
     </transf>
     </goal>
    </transf>
    </goal>
-   <goal name="VC pgcd.5.1" expl="VC for pgcd">
-   <proof prover="0" timelimit="5" memlimit="2000"><result status="timeout" time="5.00"/></proof>
-   <proof prover="1" timelimit="5" memlimit="2000"><result status="timeout" time="5.00"/></proof>
-   <proof prover="2" timelimit="5" memlimit="2000"><result status="timeout" time="5.00"/></proof>
-   <proof prover="6" memlimit="2000"><result status="timeout" time="5.00"/></proof>
-   <transf name="introduce_premises" >
-    <goal name="VC pgcd.5.1.0" expl="VC for pgcd">
-    <proof prover="0" timelimit="30" memlimit="4000"><result status="timeout" time="30.00"/></proof>
-    <proof prover="1" timelimit="30" memlimit="4000"><result status="timeout" time="30.00"/></proof>
-    <proof prover="2" timelimit="30" memlimit="4000"><result status="timeout" time="30.00"/></proof>
-    <proof prover="6" timelimit="30" memlimit="4000"><result status="timeout" time="30.00"/></proof>
+   <goal name="VC pgcd.5.3" expl="VC for pgcd" proved="true">
+   <proof prover="0" timelimit="5" memlimit="2000" obsolete="true"><result status="timeout" time="5.00"/></proof>
+   <proof prover="1" timelimit="5" memlimit="2000" obsolete="true"><result status="timeout" time="5.00"/></proof>
+   <proof prover="2" timelimit="5" memlimit="2000" obsolete="true"><result status="timeout" time="5.00"/></proof>
+   <proof prover="6" memlimit="2000" obsolete="true"><result status="timeout" time="5.00"/></proof>
+   <transf name="introduce_premises" proved="true" >
+    <goal name="VC pgcd.5.3.0" expl="VC for pgcd" proved="true">
+    <proof prover="0" timelimit="30" memlimit="4000" obsolete="true"><result status="failure" time="0.00"/></proof>
+    <proof prover="1" timelimit="30" memlimit="4000" obsolete="true"><result status="timeout" time="30.00"/></proof>
+    <proof prover="2"><result status="valid" time="0.03"/></proof>
+    <proof prover="6" timelimit="30" memlimit="4000" obsolete="true"><result status="timeout" time="30.00"/></proof>
     </goal>
    </transf>
-   </goal>
-   <goal name="VC pgcd.5.2" expl="VC for pgcd" proved="true">
-   <proof prover="2"><result status="valid" time="0.04"/></proof>
-   </goal>
-   <goal name="VC pgcd.5.3" expl="VC for pgcd" proved="true">
-   <proof prover="2"><result status="valid" time="0.03"/></proof>
    </goal>
   </transf>
   </goal>
@@ -176,75 +176,90 @@
    <proof prover="0"><result status="timeout" time="1.00"/></proof>
    <proof prover="1" timelimit="5" memlimit="2000"><result status="timeout" time="5.00"/></proof>
    <proof prover="2" timelimit="5" memlimit="2000"><result status="timeout" time="5.00"/></proof>
-   <proof prover="6" memlimit="2000"><result status="valid" time="2.11"/></proof>
+   <proof prover="6" memlimit="2000"><result status="valid" time="2.04"/></proof>
    </goal>
    <goal name="VC pgcd.6.1" expl="loop invariant preservation" proved="true">
-   <proof prover="2"><result status="valid" time="0.03"/></proof>
+   <proof prover="2"><result status="valid" time="0.04"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="VC pgcd.7" expl="loop invariant preservation" proved="true">
-  <proof prover="2"><result status="valid" time="0.02"/></proof>
+  <proof prover="2"><result status="valid" time="0.12"/></proof>
   </goal>
   <goal name="VC pgcd.8" expl="loop invariant preservation" proved="true">
-  <proof prover="2"><result status="valid" time="0.11"/></proof>
+  <proof prover="2"><result status="valid" time="0.14"/></proof>
   </goal>
-  <goal name="VC pgcd.9" expl="loop variant decrease">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00"/></proof>
-  <proof prover="2"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6" timelimit="1"><result status="timeout" time="1.00"/></proof>
-  <transf name="split_all_full" >
-   <goal name="VC pgcd.9.0" expl="VC for pgcd">
-   <proof prover="0" timelimit="5" memlimit="2000"><result status="timeout" time="5.00"/></proof>
-   <proof prover="1" timelimit="5" memlimit="2000"><result status="timeout" time="5.00"/></proof>
-   <proof prover="2" timelimit="5" memlimit="2000"><result status="timeout" time="5.00"/></proof>
-   <proof prover="6" memlimit="2000"><result status="timeout" time="5.00"/></proof>
-   <transf name="introduce_premises" >
-    <goal name="VC pgcd.9.0.0" expl="VC for pgcd">
-    <transf name="inline_goal" >
-     <goal name="VC pgcd.9.0.0.0" expl="VC for pgcd">
-     <proof prover="0" timelimit="30" memlimit="4000"><undone/></proof>
-     <proof prover="1" timelimit="30" memlimit="4000"><result status="timeout" time="30.00"/></proof>
-     <proof prover="2" timelimit="30" memlimit="4000"><result status="timeout" time="30.00"/></proof>
-     <proof prover="6" timelimit="30" memlimit="4000"><result status="timeout" time="30.00"/></proof>
+  <goal name="VC pgcd.9" expl="loop variant decrease" proved="true">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" timelimit="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <transf name="split_all_full" proved="true" >
+   <goal name="VC pgcd.9.0" expl="VC for pgcd" proved="true">
+   <proof prover="2"><result status="valid" time="0.04"/></proof>
+   </goal>
+   <goal name="VC pgcd.9.1" expl="VC for pgcd" proved="true">
+   <proof prover="2"><result status="valid" time="0.03"/></proof>
+   </goal>
+   <goal name="VC pgcd.9.2" expl="VC for pgcd" proved="true">
+   <proof prover="0" timelimit="5" memlimit="2000" obsolete="true"><result status="timeout" time="5.00"/></proof>
+   <proof prover="1" timelimit="5" memlimit="2000" obsolete="true"><result status="timeout" time="5.00"/></proof>
+   <proof prover="2" timelimit="5" memlimit="2000" obsolete="true"><result status="timeout" time="5.00"/></proof>
+   <proof prover="6" memlimit="2000" obsolete="true"><result status="timeout" time="5.00"/></proof>
+   <transf name="introduce_premises" proved="true" >
+    <goal name="VC pgcd.9.2.0" expl="VC for pgcd" proved="true">
+    <transf name="inline_goal" proved="true" >
+     <goal name="VC pgcd.9.2.0.0" expl="VC for pgcd" proved="true">
+     <proof prover="0" timelimit="30" memlimit="4000" obsolete="true"><result status="timeout" time="30.00"/></proof>
+     <proof prover="1" timelimit="30" memlimit="4000" obsolete="true"><result status="timeout" time="30.00"/></proof>
+     <proof prover="2"><result status="valid" time="0.03"/></proof>
+     <proof prover="6" timelimit="30" memlimit="4000" obsolete="true"><result status="timeout" time="30.00"/></proof>
      </goal>
     </transf>
     </goal>
    </transf>
    </goal>
-   <goal name="VC pgcd.9.1" expl="VC for pgcd">
-   <proof prover="0" timelimit="5" memlimit="2000"><result status="timeout" time="5.00"/></proof>
-   <proof prover="1" timelimit="5" memlimit="2000"><result status="timeout" time="5.00"/></proof>
-   <proof prover="2" timelimit="5" memlimit="2000"><result status="timeout" time="5.00"/></proof>
-   <proof prover="6" memlimit="2000"><result status="timeout" time="5.00"/></proof>
-   <transf name="introduce_premises" >
-    <goal name="VC pgcd.9.1.0" expl="VC for pgcd">
-    <proof prover="0" timelimit="30" memlimit="4000"><undone/></proof>
-    <proof prover="1" timelimit="30" memlimit="4000"><result status="timeout" time="30.00"/></proof>
-    <proof prover="2" timelimit="30" memlimit="4000"><result status="timeout" time="30.00"/></proof>
-    <proof prover="6" timelimit="30" memlimit="4000"><result status="timeout" time="30.00"/></proof>
+   <goal name="VC pgcd.9.3" expl="VC for pgcd" proved="true">
+   <proof prover="0" timelimit="5" memlimit="2000" obsolete="true"><result status="timeout" time="5.00"/></proof>
+   <proof prover="1" timelimit="5" memlimit="2000" obsolete="true"><result status="timeout" time="5.00"/></proof>
+   <proof prover="2" timelimit="5" memlimit="2000" obsolete="true"><result status="timeout" time="5.00"/></proof>
+   <proof prover="6" memlimit="2000" obsolete="true"><result status="timeout" time="5.00"/></proof>
+   <transf name="introduce_premises" proved="true" >
+    <goal name="VC pgcd.9.3.0" expl="VC for pgcd" proved="true">
+    <proof prover="0" timelimit="30" memlimit="4000" obsolete="true"><result status="timeout" time="30.00"/></proof>
+    <proof prover="1" timelimit="30" memlimit="4000" obsolete="true"><result status="timeout" time="30.00"/></proof>
+    <proof prover="2"><result status="valid" time="0.03"/></proof>
+    <proof prover="6" timelimit="30" memlimit="4000" obsolete="true"><result status="timeout" time="30.00"/></proof>
     </goal>
    </transf>
-   </goal>
-   <goal name="VC pgcd.9.2" expl="VC for pgcd" proved="true">
-   <proof prover="2"><result status="valid" time="0.03"/></proof>
-   </goal>
-   <goal name="VC pgcd.9.3" expl="VC for pgcd" proved="true">
-   <proof prover="2"><result status="valid" time="0.03"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="VC pgcd.10" expl="loop invariant preservation" proved="true">
-  <proof prover="1"><result status="timeout" time="1.00"/></proof>
-  <proof prover="2"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6" timelimit="1"><result status="valid" time="0.22"/></proof>
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" timelimit="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <transf name="split_all_full" proved="true" >
+   <goal name="VC pgcd.10.0" expl="loop invariant preservation" proved="true">
+   <proof prover="0"><result status="timeout" time="1.00"/></proof>
+   <proof prover="1"><result status="timeout" time="1.00"/></proof>
+   <proof prover="2"><result status="timeout" time="1.00"/></proof>
+   <proof prover="6" timelimit="1"><result status="valid" time="0.22"/></proof>
+   </goal>
+   <goal name="VC pgcd.10.1" expl="loop invariant preservation" proved="true">
+   <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+   <proof prover="1" timelimit="5" memlimit="2000" obsolete="true"><result status="timeout" time="5.00"/></proof>
+   <proof prover="2"><result status="valid" time="0.02"/></proof>
+   <proof prover="6" memlimit="2000" obsolete="true"><result status="valid" time="2.11"/></proof>
+   </goal>
+  </transf>
   </goal>
   <goal name="VC pgcd.11" expl="loop invariant preservation" proved="true">
-  <proof prover="2"><result status="valid" time="0.12"/></proof>
+  <proof prover="2"><result status="valid" time="0.11"/></proof>
   </goal>
   <goal name="VC pgcd.12" expl="loop invariant preservation" proved="true">
-  <proof prover="2"><result status="valid" time="0.03"/></proof>
+  <proof prover="2"><result status="valid" time="0.02"/></proof>
   </goal>
   <goal name="VC pgcd.13" expl="postcondition" proved="true">
   <proof prover="2"><result status="valid" time="0.13"/></proof>
