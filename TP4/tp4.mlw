@@ -62,24 +62,56 @@ module LabySpec
   
   
   (* question 4 *)
-  val (=) (x y:case) : bool   (* A utiliser dans gagne *)
+  let (=) (x y:case) : bool   (* A utiliser dans gagne *)
   ensures { result <-> x=y }
+  =
+   match x with
+    |Libre -> 
+        match y with
+        |Libre -> true
+        |Mur-> false
+        |Sortie-> false
+        end
+                    
+    |Mur -> 
+        match y with
+        |Libre -> false
+        |Mur-> true
+        |Sortie-> false
+        end
+            
+    |Sortie ->  
+        match y with
+        |Libre -> false
+        |Mur-> false
+        |Sortie-> true
+        end
+    
+    end
           
-  val gagne (b : laby) (i j : int) : bool 
-  ensures {sortie_trouvee b i j = result} 
-  ensures {sortie_trouvee b i j = true} 
+  let gagne (b : laby) (i j : int) : bool 
+  ensures {result <-> sortie_trouvee b i j} 
+  =
+  let case1 = ref Sortie in
+  let case2 = ref (get b i j) in
+
+ if ( (=) !case1 !case2 ) then true else false
+ 
+
   (* a completer *)
 
   (* question 5 *)
-  val peut_se_deplacer (b : laby) (i j : int) : bool 
-  ensures {position_valide b i j = result}
-  ensures {position_valide b i j = true}
+  let peut_se_deplacer (b : laby) (i j : int) : bool 
+  ensures {result <-> position_valide b i j }
+  =
+  if (get b i j = Sortie || get b i j = Libre) then true 
+  else false
   (* a completer *)
 
   (* question 6 *)
   (* Dans la specification, il faut utiliser la fonction 
      nouvelle_position à définir plus haut *)
-  val deplacement (b : laby) (i j : int) (d : direction) : (int, int)
+  let deplacement (b : laby) (i j : int) (d : direction) : (int, int)
   ensures { 
             let (r , c) = (nouvelle_position i j d ) in 
             (
@@ -92,19 +124,70 @@ module LabySpec
            result = (i , j) )
             )
            }
+  =
+     match d with
+    |Haut 
+        ->  if peut_se_deplacer b  (i-1)  j then ((i-1) , j) else (i,j)
+                    
+    |Bas 
+        -> if peut_se_deplacer b  (i+1)  j then ((i+1) , j) else (i,j)
+            
+    |Gauche 
+        -> if peut_se_deplacer b  i  (j-1) then (i , (j-1)) else (i,j)
+    
+    |Droite 
+        -> if peut_se_deplacer b  i  (j+1) then (i , (j+1)) else (i,j)
+    
+    end
   (* a completer *)
     
   (* question 9 *)
-  val mk_laby (n : int) (m : int) : laby 
+  let mk_laby (n : int) (m : int) : laby 
   ensures{laby_valide result}
   ensures{ forall i j : int. 0<= i <n /\ 0 <=j< m 
           ->
           position_valide result i j }
+  =
+        let lab1 = make n m Libre  in
+        set lab1 (n-1) (m-1) Sortie;
+
+        lab1
+
+
+
+
   (* a completer *)
 
   (* question 10 *)
-  val position_initiale (b : laby) : (int, int) 
-  ensures { result = (0 , 0) }(* a completer *)
+  let rec position_initiale (b : laby) : (int, int) 
+  variant {1}
+  requires{laby_valide b}
+  ensures { let (r, c) = result in position_valide b r c   }
+  =
+ 
+ (* let i = ref 0 in
+  let j = ref 0 in*)
+
+  let i = random_int b.rows in
+  let j = random_int b.columns in
+
+  (*while not (peut_se_deplacer b !i !j) do 
+  invariant{valid_index b !i !j}
+  variant{1}
+  i := random_int b.rows ;
+  j := random_int b.columns ; 
+
+  
+
+done;*)
+
+  if (not peut_se_deplacer b i j ) 
+  then
+  position_initiale b
+  else
+  (i , j)
+
+  (* a completer *)
   
 end
 
