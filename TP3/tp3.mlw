@@ -1,0 +1,121 @@
+module TP31
+  use int.Int
+  use matrix.Matrix
+  
+  type mint = matrix int
+  
+  function nbelts (mat : mint ) : int 
+  = 
+  mat.rows * mat.columns
+  
+  predicate ttes_cases_sauf_une (m : mint) =
+  exists r c :int . valid_index m r c /\ get m r c = 1
+  /\
+   forall i j :int. (r <> i \/ c <> j) 
+   /\
+  valid_index m i j ->  get m i j = 2 
+  
+  
+end
+
+module Test31
+  use int.Int
+  use matrix.Matrix
+  use TP31
+
+  let testLib () = 
+  let mat1 = make 3 4 0  in
+  let valeur1 = get mat1 0 0 in  
+  assert {valeur1 = 0 };
+  set mat1 0 0 2;
+  let valeur1 = get mat1 0 0 in  
+  assert {valeur1 = 2 };
+  assert {mat1.rows = 3 && mat1.columns = 4 }
+  
+  let testNbelts () = 
+  let mat2 = make 5 4 9  in
+  assert {nbelts mat2 = 20 }
+  
+  let test_ttes_cases () = 
+  let mat2 = make 3 4 1  in
+  assert {ttes_cases_sauf_une mat2 }
+  
+  let test_ttes_cases2 () = 
+  let mat2 = make 3 4 2  in
+  set mat2 1 2 1;
+  assert {ttes_cases_sauf_une mat2 }
+  
+  let test_ttes_cases3 () = 
+  let mat2 = make 3 4 6  in
+  set mat2 1 2 5;
+  set mat2 1 3 8;
+  set mat2 0 2 10;
+  assert {ttes_cases_sauf_une mat2 }
+  
+end
+
+
+
+
+module TP32
+ use int.Int
+  use matrix.Matrix
+  
+  type couleur = Rouge | Vert | Bleu
+  type mcouleur =  matrix couleur 
+  
+  function nbelts (mat : mcouleur ) : int 
+  = 
+  mat.rows * mat.columns
+  
+  predicate ttes_bleues (m : mcouleur) =  
+  forall i j : int.  valid_index m i j ->  get m i j = Bleu 
+  
+  predicate au_moins_une_verte (m :mcouleur) =
+  exists i j : int. valid_index m i j /\ get m i j = Vert
+  
+  
+
+end
+
+module Test32
+  use matrix.Matrix
+  use TP32
+  
+  let testLib () = 
+  let mat1 = make 3 4 Rouge  in
+  let valeur1 = get mat1 0 0 in  
+  assert {valeur1 = Rouge };
+  set mat1 0 0 Vert;
+  let valeur1 = get mat1 0 0 in  
+  assert {valeur1 = Vert };
+  assert {mat1.rows = 3 && mat1.columns = 4 }
+  
+  let testNbelts () = 
+  let mat2 = make 5 4 Bleu  in
+  assert {nbelts mat2 = 20 }
+  
+  let test_ttes_bleues () = 
+  let mat2 = make 4 5 Bleu  in
+  assert {ttes_bleues mat2 }
+  
+  let test_ttes_bleues2 () = 
+  let mat2 = make 4 5 Rouge  in
+  set mat2 1 2 Bleu;
+  assert {ttes_bleues mat2 }
+  
+  let test_ttes_bleues3 () = 
+  let mat2 = make 4 5 Rouge  in
+  set mat2 1 2 Bleu;
+  set mat2 1 3 Rouge;
+  set mat2 0 2 Vert;
+  assert {ttes_bleues mat2 }
+  
+  let au_moins_une_verte () = 
+  let mat2 = make 4 5 Rouge  in
+  set mat2 1 2 Vert;
+  assert {au_moins_une_verte mat2}
+  
+  
+
+end
