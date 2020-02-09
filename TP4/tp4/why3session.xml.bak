@@ -3,12 +3,116 @@
 "http://why3.lri.fr/why3session.dtd">
 <why3session shape_version="5">
 <prover id="0" name="CVC4" version="1.6" timelimit="1" steplimit="0" memlimit="1000"/>
-<file proved="true">
+<prover id="1" name="Z3" version="4.8.4" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="2" name="Spass" version="3.7" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="3" name="Z3" version="4.8.4" alternative="counterexamples" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="4" name="Alt-Ergo" version="2.3.0" timelimit="1" steplimit="0" memlimit="1000"/>
+<file>
 <path name=".."/>
 <path name="tp4.mlw"/>
+<theory name="LabySpec">
+ <goal name="VC infix =" expl="VC for infix =" proved="true">
+ <proof prover="0"><result status="valid" time="0.02"/></proof>
+ <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
+ <proof prover="4" obsolete="true"><result status="unknown" time="0.01"/></proof>
+ </goal>
+ <goal name="VC gagne" expl="VC for gagne">
+ <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+ <proof prover="1" obsolete="true"><result status="unknown" time="0.07"/></proof>
+ <proof prover="2" obsolete="true"><result status="timeout" time="1.00"/></proof>
+ <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+ <transf name="split_vc" >
+  <goal name="VC gagne.0" expl="index in matrix bounds">
+  </goal>
+  <goal name="VC gagne.1" expl="postcondition">
+  </goal>
+ </transf>
+ </goal>
+ <goal name="VC peut_se_deplacer" expl="VC for peut_se_deplacer">
+ <proof prover="0"><result status="timeout" time="1.00"/></proof>
+ <proof prover="1"><result status="unknown" time="0.07"/></proof>
+ <proof prover="3" obsolete="true"><result status="unknown" time="0.26"/></proof>
+ <proof prover="4"><result status="timeout" time="1.00"/></proof>
+ <transf name="split_vc" >
+  <goal name="VC peut_se_deplacer.0" expl="index in matrix bounds">
+  <proof prover="0"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4"><result status="unknown" time="0.01"/></proof>
+  </goal>
+  <goal name="VC peut_se_deplacer.1" expl="index in matrix bounds">
+  <proof prover="0"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4"><result status="unknown" time="0.00"/></proof>
+  </goal>
+  <goal name="VC peut_se_deplacer.2" expl="postcondition">
+  <proof prover="0"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4"><result status="timeout" time="1.00"/></proof>
+  </goal>
+ </transf>
+ </goal>
+ <goal name="VC deplacement" expl="VC for deplacement" proved="true">
+ <proof prover="0"><result status="valid" time="0.90"/></proof>
+ </goal>
+ <goal name="VC mk_laby" expl="VC for mk_laby">
+ <proof prover="0"><result status="unknown" time="0.07"/></proof>
+ <proof prover="1"><result status="timeout" time="1.00"/></proof>
+ <proof prover="4"><result status="unknown" time="0.01"/></proof>
+ <transf name="split_vc" >
+  <goal name="VC mk_laby.0" expl="precondition">
+  <proof prover="0"><result status="unknown" time="0.07"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4"><result status="unknown" time="0.00"/></proof>
+  </goal>
+  <goal name="VC mk_laby.1" expl="index in matrix bounds">
+  <proof prover="0"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1"><result status="unknown" time="0.07"/></proof>
+  <proof prover="4"><result status="unknown" time="0.01"/></proof>
+  </goal>
+  <goal name="VC mk_laby.2" expl="postcondition">
+  <proof prover="0"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4"><result status="unknown" time="0.01"/></proof>
+  </goal>
+  <goal name="VC mk_laby.3" expl="postcondition" proved="true">
+  <proof prover="0"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4"><result status="valid" time="0.02" steps="103"/></proof>
+  </goal>
+ </transf>
+ </goal>
+ <goal name="VC position_initiale" expl="VC for position_initiale">
+ <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+ <proof prover="1" obsolete="true"><result status="highfailure" time="0.23"/></proof>
+ <proof prover="4" obsolete="true"><result status="unknown" time="0.02"/></proof>
+ <transf name="split_vc" >
+  <goal name="VC position_initiale.0" expl="precondition" proved="true">
+  <proof prover="0"><result status="valid" time="0.03"/></proof>
+  </goal>
+  <goal name="VC position_initiale.1" expl="precondition" proved="true">
+  <proof prover="0"><result status="valid" time="0.03"/></proof>
+  </goal>
+  <goal name="VC position_initiale.2" expl="variant decrease">
+  <proof prover="0"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4"><result status="unknown" time="0.01"/></proof>
+  </goal>
+  <goal name="VC position_initiale.3" expl="precondition" proved="true">
+  <proof prover="0"><result status="valid" time="0.02"/></proof>
+  </goal>
+  <goal name="VC position_initiale.4" expl="postcondition" proved="true">
+  <proof prover="0"><result status="valid" time="0.01"/></proof>
+  </goal>
+  <goal name="VC position_initiale.5" expl="postcondition" proved="true">
+  <proof prover="0"><result status="valid" time="0.01"/></proof>
+  </goal>
+ </transf>
+ </goal>
+</theory>
 <theory name="LabyTest" proved="true">
  <goal name="VC testLaby" expl="VC for testLaby" proved="true">
  <proof prover="0"><result status="valid" time="0.03"/></proof>
+ <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
+ <proof prover="4" obsolete="true"><result status="unknown" time="0.01"/></proof>
  </goal>
 </theory>
 </file>

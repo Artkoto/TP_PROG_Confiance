@@ -53,7 +53,9 @@ module LabySpec
     |Droite ->  i , (j+1)  
     
     end
-     
+    
+    (* a modifier et completer *)
+ 
            (*****************************************)
            (******** LES SOUS-PROGRAMMES   **********)
            (*****************************************)
@@ -98,6 +100,8 @@ module LabySpec
  if ( (=) !case1 !case2 ) then true else false
  
 
+  (* a completer *)
+
   (* question 5 *)
   let peut_se_deplacer (b : laby) (i j : int) : bool 
   requires{laby_valide b}
@@ -106,7 +110,7 @@ module LabySpec
   =
   if ( (=) (get b i j) Sortie || (=) (get b i j) Libre) then true 
   else false
-  
+  (* a completer *)
 
   (* question 6 *)
   (* Dans la specification, il faut utiliser la fonction 
@@ -150,37 +154,39 @@ module LabySpec
         else  (i,j)
     
     end
-  
+  (* a completer *)
     
   (* question 9 *)
   let mk_laby (n : int) (m : int) : laby 
-  requires{0 < n}
-  requires{ 0 < m}
   ensures{laby_valide result}
-
   =
-        let lab = make n m Libre  in
-        
-        let pacerMur = ref true in 
-        pacerMur := random_bool();
+        let lab1 = make n m Libre  in
+        let r = random_int lab1.rows in
+        let c = random_int lab1.columns in
+        let vroufx = random_bool in 
+        set lab1 r c Sortie ;
 
-        for i = 0 to n-1  do 
-         invariant{i <= n }
-            for j = 0 to m-1 do 
-            invariant{j <= m}
-            if  (!pacerMur )  then ( set lab i j Mur)
-             else (set lab i j Libre );
-            pacerMur := random_bool()
-            done;
+
+        for i = 0 to lab1.rows-1 do 
+         invariant{0 <= i < lab1.rows }
+           for j = 0 to lab1.columns-1 do 
+           invariant{valid_index lab1 i j}
+          if not (i = r && j = c) then 
+          begin 
+          if vroufx = true  then set lab1 i j Libre else set lab1 i j Mur
+          end; 
+
+           done ;
 
            done;
 
-           let r = random_int n in
-          let c = random_int m in
-           set lab r c Sortie ;
 
-        lab
+        lab1
 
+
+
+
+  (* a completer *)
 
   (* question 10 *)
   let rec position_initiale (b : laby) : (int, int) 
@@ -211,7 +217,7 @@ done;*)
   else
   (i , j)
 
-  
+  (* a completer *)
   
 end
 
