@@ -32,7 +32,7 @@ module LabySpec
 
   (* question 2 *)
   predicate position_valide (b : laby) (i j : int) =
-  valid_index b i j /\ laby_valide b /\ not get b i j = Mur  
+  valid_index b i j /\ laby_valide b /\ not (get b i j = Mur)  
 
 
   (* question 3 *)
@@ -154,8 +154,7 @@ module LabySpec
     
   (* question 9 *)
   let mk_laby (n : int) (m : int) : laby 
-  requires{0 < n}
-  requires{ 0 < m}
+  requires{ 0 < n /\ 0 < m }
   ensures{laby_valide result}
 
   =
@@ -183,35 +182,48 @@ module LabySpec
 
 
   (* question 10 *)
-  let rec position_initiale (b : laby) : (int, int) 
-  variant {1}
+  let position_initiale (b : laby) : (int, int) 
   requires{laby_valide b}
   ensures { let (r, c) = result in position_valide b r c   }
   =
  
- (* let i = ref 0 in
-  let j = ref 0 in*)
-
-  let i = random_int b.rows in
-  let j = random_int b.columns in
-
-  (*while not (peut_se_deplacer b !i !j) do 
-  invariant{valid_index b !i !j}
-  variant{1}
+  let i = ref 0 in
+  let j = ref 0 in
+  let compt = ref 100 in
   i := random_int b.rows ;
-  j := random_int b.columns ; 
+  j := random_int b.columns ;
 
-  
+  while (not(peut_se_deplacer b !i !j) && !compt > 0) do 
+  invariant{valid_index b !i !j}
+  variant{!compt}
+  compt := !compt - 1;
+  i := random_int b.rows ;
+  j := random_int b.columns 
 
-done;*)
+done;
 
-  if (not peut_se_deplacer b i j ) 
-  then
-  position_initiale b
-  else
-  (i , j)
+if not (peut_se_deplacer b !i !j) then begin
 
-  
+  i := 0 ;
+
+  while (not(peut_se_deplacer b !i !j) && !i < b.rows ) do 
+  invariant{valid_index b !i !j}
+  variant{b.rows - !i}
+  i := !i+1 ;
+
+  j := 0 ;
+  while (not(peut_se_deplacer b !i !j) && !j < b.columns ) do 
+  invariant{valid_index b (!i-1) !j}
+  variant{b.columns - !j}
+  j := !j+1 
+
+  done;
+  done;
+
+  end;
+
+  (!i,!j)
+
   
 end
 

@@ -32,7 +32,7 @@ module LabySpec
 
   (* question 2 *)
   predicate position_valide (b : laby) (i j : int) =
-  valid_index b i j /\ laby_valide b /\ not get b i j = Mur  
+  valid_index b i j /\ laby_valide b /\ not (get b i j = Mur)  
 
 
   (* question 3 *)
@@ -53,9 +53,7 @@ module LabySpec
     |Droite ->  i , (j+1)  
     
     end
-    
-    (* a modifier et completer *)
- 
+     
            (*****************************************)
            (******** LES SOUS-PROGRAMMES   **********)
            (*****************************************)
@@ -100,8 +98,6 @@ module LabySpec
  if ( (=) !case1 !case2 ) then true else false
  
 
-  (* a completer *)
-
   (* question 5 *)
   let peut_se_deplacer (b : laby) (i j : int) : bool 
   requires{laby_valide b}
@@ -110,7 +106,7 @@ module LabySpec
   =
   if ( (=) (get b i j) Sortie || (=) (get b i j) Libre) then true 
   else false
-  (* a completer *)
+  
 
   (* question 6 *)
   (* Dans la specification, il faut utiliser la fonction 
@@ -154,70 +150,80 @@ module LabySpec
         else  (i,j)
     
     end
-  (* a completer *)
+  
     
   (* question 9 *)
   let mk_laby (n : int) (m : int) : laby 
+  requires{ 0 < n  0 < m }
   ensures{laby_valide result}
+
   =
-        let lab1 = make n m Libre  in
-        let r = random_int lab1.rows in
-        let c = random_int lab1.columns in
-        let vroufx = random_bool in 
-        set lab1 r c Sortie ;
+        let lab = make n m Libre  in
+        
+        let pacerMur = ref true in 
+        pacerMur := random_bool();
 
-
-        for i = 0 to lab1.rows-1 do 
-         invariant{0 <= i < lab1.rows }
-           for j = 0 to lab1.columns-1 do 
-           invariant{valid_index lab1 i j}
-          if not (i = r && j = c) then 
-          begin 
-          if vroufx = true  then set lab1 i j Libre else set lab1 i j Mur
-          end; 
-
-           done ;
+        for i = 0 to n-1  do 
+         invariant{i <= n }
+            for j = 0 to m-1 do 
+            invariant{j <= m}
+            if  (!pacerMur )  then ( set lab i j Mur)
+             else (set lab i j Libre );
+            pacerMur := random_bool()
+            done;
 
            done;
 
+           let r = random_int n in
+          let c = random_int m in
+           set lab r c Sortie ;
 
-        lab1
+        lab
 
-
-
-
-  (* a completer *)
 
   (* question 10 *)
-  let rec position_initiale (b : laby) : (int, int) 
-  variant {1}
+  let position_initiale (b : laby) : (int, int) 
   requires{laby_valide b}
   ensures { let (r, c) = result in position_valide b r c   }
   =
  
- (* let i = ref 0 in
-  let j = ref 0 in*)
-
-  let i = random_int b.rows in
-  let j = random_int b.columns in
-
-  (*while not (peut_se_deplacer b !i !j) do 
-  invariant{valid_index b !i !j}
-  variant{1}
+  let i = ref 0 in
+  let j = ref 0 in
+  let compt = ref 100 in
   i := random_int b.rows ;
-  j := random_int b.columns ; 
+  j := random_int b.columns ;
 
-  
+  while (not(peut_se_deplacer b !i !j) && !compt > 0) do 
+  invariant{valid_index b !i !j}
+  variant{!compt}
+  compt := !compt - 1;
+  i := random_int b.rows ;
+  j := random_int b.columns 
 
-done;*)
+done;
 
-  if (not peut_se_deplacer b i j ) 
-  then
-  position_initiale b
-  else
-  (i , j)
+if not (peut_se_deplacer b !i !j) then begin
 
-  (* a completer *)
+  i := 0 ;
+
+  while (not(peut_se_deplacer b !i !j) && !i < b.rows ) do 
+  invariant{valid_index b !i !j}
+  variant{b.rows - !i}
+  i := !i+1 ;
+
+  j := 0 ;
+  while (not(peut_se_deplacer b !i !j) && !j < b.columns ) do 
+  invariant{valid_index b (!i-1) !j}
+  variant{b.columns - !j}
+  j := !j+1 
+
+  done;
+  done;
+
+  end;
+
+  (!i,!j)
+
   
 end
 
