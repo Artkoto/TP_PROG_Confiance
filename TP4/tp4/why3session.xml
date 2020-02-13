@@ -4,7 +4,7 @@
 <why3session shape_version="5">
 <prover id="0" name="CVC4" version="1.6" timelimit="1" steplimit="0" memlimit="1000"/>
 <prover id="1" name="Z3" version="4.8.4" timelimit="1" steplimit="0" memlimit="1000"/>
-<prover id="2" name="Spass" version="3.7" timelimit="5" steplimit="0" memlimit="1000"/>
+<prover id="2" name="Spass" version="3.7" timelimit="1" steplimit="0" memlimit="1000"/>
 <prover id="4" name="Alt-Ergo" version="2.3.0" timelimit="1" steplimit="0" memlimit="1000"/>
 <file>
 <path name=".."/>
@@ -58,55 +58,75 @@
  <proof prover="0"><result status="valid" time="0.72"/></proof>
  </goal>
  <goal name="VC mk_laby" expl="VC for mk_laby">
- <proof prover="0"><result status="timeout" time="1.00"/></proof>
- <proof prover="1"><result status="timeout" time="1.00"/></proof>
- <proof prover="2" timelimit="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
- <proof prover="4"><result status="timeout" time="1.00"/></proof>
- <transf name="split_all_full" >
+ <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+ <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
+ <proof prover="2" obsolete="true"><result status="timeout" time="1.00"/></proof>
+ <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+ <transf name="split_vc" >
   <goal name="VC mk_laby.0" expl="precondition" proved="true">
   <proof prover="0"><result status="valid" time="0.02"/></proof>
   </goal>
   <goal name="VC mk_laby.1" expl="loop invariant init" proved="true">
-  <proof prover="0"><result status="valid" time="0.02"/></proof>
-  </goal>
-  <goal name="VC mk_laby.2" expl="loop invariant init" proved="true">
-  <proof prover="0"><result status="valid" time="0.02"/></proof>
-  </goal>
-  <goal name="VC mk_laby.3" expl="index in matrix bounds" proved="true">
-  <proof prover="0"><result status="valid" time="0.04"/></proof>
-  </goal>
-  <goal name="VC mk_laby.4" expl="loop invariant preservation" proved="true">
-  <proof prover="0"><result status="valid" time="0.02"/></proof>
-  </goal>
-  <goal name="VC mk_laby.5" expl="index in matrix bounds" proved="true">
-  <proof prover="0"><result status="valid" time="0.04"/></proof>
-  </goal>
-  <goal name="VC mk_laby.6" expl="loop invariant preservation" proved="true">
-  <proof prover="0"><result status="valid" time="0.02"/></proof>
-  </goal>
-  <goal name="VC mk_laby.7" expl="loop invariant preservation" proved="true">
-  <proof prover="0"><result status="valid" time="0.03"/></proof>
-  </goal>
-  <goal name="VC mk_laby.8" expl="loop invariant preservation" proved="true">
-  <proof prover="0"><result status="valid" time="0.02"/></proof>
-  </goal>
-  <goal name="VC mk_laby.9" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.02"/></proof>
-  </goal>
-  <goal name="VC mk_laby.10" expl="precondition" proved="true">
   <proof prover="0"><result status="valid" time="0.01"/></proof>
   </goal>
-  <goal name="VC mk_laby.11" expl="index in matrix bounds" proved="true">
+  <goal name="VC mk_laby.2" expl="assertion" proved="true">
+  <proof prover="0"><result status="valid" time="0.01"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  </goal>
+  <goal name="VC mk_laby.3" expl="loop invariant init" proved="true">
+  <transf name="split_all_full" proved="true" >
+   <goal name="VC mk_laby.3.0" expl="loop invariant init" proved="true">
+   <proof prover="0"><result status="valid" time="0.04"/></proof>
+   <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
+   <proof prover="4" obsolete="true"><result status="unknown" time="0.01"/></proof>
+   </goal>
+  </transf>
+  </goal>
+  <goal name="VC mk_laby.4" expl="index in matrix bounds" proved="true">
   <proof prover="0"><result status="valid" time="0.03"/></proof>
   </goal>
-  <goal name="VC mk_laby.12" expl="postcondition">
-  <proof prover="0"><result status="timeout" time="2.00"/></proof>
+  <goal name="VC mk_laby.5" expl="assertion" proved="true">
+  <proof prover="0"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4"><result status="valid" time="0.03" steps="106"/></proof>
+  </goal>
+  <goal name="VC mk_laby.6" expl="loop invariant preservation" proved="true">
+  <proof prover="0"><result status="valid" time="0.03"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="valid" time="0.02" steps="105"/></proof>
+  </goal>
+  <goal name="VC mk_laby.7" expl="loop invariant preservation" proved="true">
+  <proof prover="0"><result status="valid" time="0.04"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="valid" time="0.02" steps="93"/></proof>
+  </goal>
+  <goal name="VC mk_laby.8" expl="loop invariant preservation" proved="true">
+  <proof prover="0"><result status="valid" time="0.03"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="unknown" time="0.02"/></proof>
+  </goal>
+  <goal name="VC mk_laby.9" expl="loop invariant preservation" proved="true">
+  <proof prover="0"><result status="valid" time="0.04"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="unknown" time="0.01"/></proof>
+  </goal>
+  <goal name="VC mk_laby.10" expl="precondition" proved="true">
+  <proof prover="0"><result status="valid" time="0.02"/></proof>
+  </goal>
+  <goal name="VC mk_laby.11" expl="precondition" proved="true">
+  <proof prover="0"><result status="valid" time="0.01"/></proof>
+  </goal>
+  <goal name="VC mk_laby.12" expl="index in matrix bounds" proved="true">
+  <proof prover="0"><result status="valid" time="0.02"/></proof>
+  </goal>
+  <goal name="VC mk_laby.13" expl="postcondition">
+  <proof prover="0"><result status="timeout" time="1.00"/></proof>
   <proof prover="1"><result status="timeout" time="1.00"/></proof>
-  <proof prover="2" memlimit="2000" obsolete="true"><result status="timeout" time="5.00"/></proof>
   <proof prover="4"><result status="timeout" time="1.00"/></proof>
   </goal>
-  <goal name="VC mk_laby.13" expl="out of loop bounds" proved="true">
-  <proof prover="0"><result status="valid" time="0.02"/></proof>
+  <goal name="VC mk_laby.14" expl="out of loop bounds" proved="true">
+  <proof prover="0"><result status="valid" time="0.03"/></proof>
   </goal>
  </transf>
  </goal>
@@ -129,6 +149,8 @@
   </goal>
   <goal name="VC position_initiale.4" expl="precondition" proved="true">
   <proof prover="0"><result status="valid" time="0.01"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="unknown" time="0.01"/></proof>
   </goal>
   <goal name="VC position_initiale.5" expl="precondition" proved="true">
   <proof prover="0"><result status="valid" time="0.03"/></proof>
@@ -146,12 +168,12 @@
   <proof prover="0"><result status="valid" time="0.01"/></proof>
   </goal>
   <goal name="VC position_initiale.10" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.02"/></proof>
+  <proof prover="0"><result status="valid" time="0.01"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="unknown" time="0.01"/></proof>
   </goal>
   <goal name="VC position_initiale.11" expl="loop invariant init" proved="true">
   <proof prover="0"><result status="valid" time="0.03"/></proof>
-  <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4" obsolete="true"><result status="unknown" time="0.02"/></proof>
   </goal>
   <goal name="VC position_initiale.12" expl="precondition" proved="true">
   <proof prover="0"><result status="valid" time="0.02"/></proof>
@@ -159,44 +181,62 @@
   <goal name="VC position_initiale.13" expl="precondition" proved="true">
   <proof prover="0"><result status="valid" time="0.01"/></proof>
   <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4" obsolete="true"><result status="unknown" time="0.02"/></proof>
+  <proof prover="4" obsolete="true"><result status="unknown" time="0.01"/></proof>
   </goal>
-  <goal name="VC position_initiale.14" expl="loop invariant init" proved="true">
+  <goal name="VC position_initiale.14" expl="loop variant decrease" proved="true">
   <proof prover="0"><result status="valid" time="0.03"/></proof>
+  </goal>
+  <goal name="VC position_initiale.15" expl="loop invariant preservation" proved="true">
+  <proof prover="0"><result status="valid" time="0.03"/></proof>
+  </goal>
+  <goal name="VC position_initiale.16" expl="loop invariant init" proved="true">
+  <proof prover="0"><result status="valid" time="0.03"/></proof>
+  </goal>
+  <goal name="VC position_initiale.17" expl="precondition" proved="true">
+  <proof prover="0"><result status="valid" time="0.02"/></proof>
+  </goal>
+  <goal name="VC position_initiale.18" expl="precondition" proved="true">
+  <proof prover="0"><result status="valid" time="0.01"/></proof>
   <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
   <proof prover="4" obsolete="true"><result status="unknown" time="0.02"/></proof>
   </goal>
-  <goal name="VC position_initiale.15" expl="precondition" proved="true">
+  <goal name="VC position_initiale.19" expl="loop invariant init" proved="true">
+  <proof prover="0"><result status="valid" time="0.04"/></proof>
+  </goal>
+  <goal name="VC position_initiale.20" expl="precondition" proved="true">
+  <proof prover="0"><result status="valid" time="0.01"/></proof>
+  </goal>
+  <goal name="VC position_initiale.21" expl="precondition" proved="true">
+  <proof prover="0"><result status="valid" time="0.02"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="unknown" time="0.02"/></proof>
+  </goal>
+  <goal name="VC position_initiale.22" expl="loop variant decrease" proved="true">
   <proof prover="0"><result status="valid" time="0.02"/></proof>
   </goal>
-  <goal name="VC position_initiale.16" expl="precondition">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="unknown" time="0.03"/></proof>
-  </goal>
-  <goal name="VC position_initiale.17" expl="loop variant decrease" proved="true">
+  <goal name="VC position_initiale.23" expl="loop invariant preservation" proved="true">
   <proof prover="0"><result status="valid" time="0.02"/></proof>
   </goal>
-  <goal name="VC position_initiale.18" expl="loop invariant preservation">
+  <goal name="VC position_initiale.24" expl="loop variant decrease" proved="true">
+  <proof prover="0"><result status="valid" time="0.02"/></proof>
+  </goal>
+  <goal name="VC position_initiale.25" expl="loop invariant preservation" proved="true">
+  <proof prover="0"><result status="valid" time="0.01"/></proof>
+  </goal>
+  <goal name="VC position_initiale.26" expl="postcondition">
   <proof prover="0"><result status="timeout" time="1.00"/></proof>
   <proof prover="1"><result status="timeout" time="1.00"/></proof>
   <proof prover="4"><result status="unknown" time="0.02"/></proof>
+  <transf name="split_all_full" >
+   <goal name="VC position_initiale.26.0" expl="postcondition">
+   <proof prover="0"><result status="timeout" time="1.00"/></proof>
+   <proof prover="1"><result status="timeout" time="1.00"/></proof>
+   <proof prover="4"><result status="unknown" time="0.03"/></proof>
+   </goal>
+  </transf>
   </goal>
-  <goal name="VC position_initiale.19" expl="loop variant decrease" proved="true">
-  <proof prover="0"><result status="valid" time="0.02"/></proof>
-  </goal>
-  <goal name="VC position_initiale.20" expl="loop invariant preservation" proved="true">
+  <goal name="VC position_initiale.27" expl="postcondition" proved="true">
   <proof prover="0"><result status="valid" time="0.01"/></proof>
-  <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4" obsolete="true"><result status="unknown" time="0.05"/></proof>
-  </goal>
-  <goal name="VC position_initiale.21" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.01"/></proof>
-  </goal>
-  <goal name="VC position_initiale.22" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.01"/></proof>
-  <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4" obsolete="true"><result status="unknown" time="0.01"/></proof>
   </goal>
  </transf>
  </goal>

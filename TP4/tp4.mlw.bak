@@ -28,7 +28,7 @@ module LabySpec
   /\
   forall i j :int. (r <> i \/ c <> j) 
   /\
-  valid_index b i j ->  get b i j = Libre \/ get b i j = Mur
+  valid_index b i j ->  (get b i j = Libre \/ get b i j = Mur)
 
   (* question 2 *)
   predicate position_valide (b : laby) (i j : int) =
@@ -154,29 +154,34 @@ module LabySpec
     
   (* question 9 *)
   let mk_laby (n : int) (m : int) : laby 
-  requires{ 0 < n  0 < m }
+  requires{ 0 < n /\ 0 < m }
   ensures{laby_valide result}
-
   =
-        let lab = make n m Libre  in
-        
-        let pacerMur = ref true in 
-        pacerMur := random_bool();
+        let lab = make n m Libre in
 
-        for i = 0 to n-1  do 
-         invariant{i <= n }
-            for j = 0 to m-1 do 
-            invariant{j <= m}
-            if  (!pacerMur )  then ( set lab i j Mur)
-             else (set lab i j Libre );
-            pacerMur := random_bool()
-            done;
+        let placerMur = ref false in 
+        placerMur := random_bool();
+       
+        for i = 0 to (n-1) do 
+         invariant{forall r c:int. (valid_index lab r c) ->  (get lab r c <> Sortie)}
 
+            assert{forall r c:int. (0 <= r < i /\ 0 <= c < m) ->  (get lab r c <> Sortie)};
+
+            for j = 0 to (m-1) do 
+
+            invariant{forall r c:int. (valid_index lab r c) \/ (r = i /\ 0 <= c < j)
+                          ->  (get lab r c <> Sortie)}
+
+            if !placerMur then begin 
+            set lab i j Mur ;
+            assert{forall r c:int. (valid_index lab r c) \/ (r = i /\ 0 <= c < j)
+                          ->  (get lab r c <> Sortie)}
+            end
+
+            done 
            done;
 
-           let r = random_int n in
-          let c = random_int m in
-           set lab r c Sortie ;
+        set lab (random_int n) (random_int m) Sortie ;
 
         lab
 
@@ -189,11 +194,11 @@ module LabySpec
  
   let i = ref 0 in
   let j = ref 0 in
-  let compt = ref 100 in
+  let compt = ref 10 in
   i := random_int b.rows ;
   j := random_int b.columns ;
 
-  while (not(peut_se_deplacer b !i !j) && !compt > 0) do 
+  while ((not(peut_se_deplacer b !i !j)) && (!compt > 0)) do 
   invariant{valid_index b !i !j}
   variant{!compt}
   compt := !compt - 1;
@@ -203,27 +208,32 @@ module LabySpec
 done;
 
 if not (peut_se_deplacer b !i !j) then begin
-
   i := 0 ;
+  j := 0 ;
+  while ((not(peut_se_deplacer b !i !j)) && (!j < (b.columns-1))) do 
+  invariant{valid_index b !i !j}
+  variant{b.columns - !j}
 
-  while (not(peut_se_deplacer b !i !j) && !i < b.rows ) do 
+  j := !j+1 
+  done;
+  
+
+  while ((not(peut_se_deplacer b !i !j)) && (!i < (b.rows-1)) ) do 
   invariant{valid_index b !i !j}
   variant{b.rows - !i}
   i := !i+1 ;
-
   j := 0 ;
-  while (not(peut_se_deplacer b !i !j) && !j < b.columns ) do 
-  invariant{valid_index b (!i-1) !j}
+
+  while ((not(peut_se_deplacer b !i !j)) && (!j < (b.columns-1))) do 
+  invariant{valid_index b !i !j}
   variant{b.columns - !j}
+
   j := !j+1 
-
-  done;
-  done;
-
+  done
+  done
   end;
-
-  (!i,!j)
-
+  
+(!i,!j)
   
 end
 
