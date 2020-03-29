@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE why3session PUBLIC "-//Why3//proof session v5//EN"
+"http://why3.lri.fr/why3session.dtd">
+<why3session shape_version="5">
+<prover id="0" name="Z3" version="4.8.4" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="2" name="Alt-Ergo" version="2.3.0" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="3" name="CVC4" version="1.6" timelimit="1" steplimit="0" memlimit="1000"/>
+<file>
+<path name=".."/>
+<path name="tp7.mlw"/>
+<theory name="TP7">
+ <goal name="VC rechercher_min" expl="VC for rechercher_min" proved="true">
+ <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+ <proof prover="2" obsolete="true"><result status="timeout" time="1.00"/></proof>
+ <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+ <transf name="split_all_full" proved="true" >
+  <goal name="VC rechercher_min.0" expl="variant decrease" proved="true">
+  <proof prover="3"><result status="valid" time="0.02"/></proof>
+  </goal>
+  <goal name="VC rechercher_min.1" expl="precondition" proved="true">
+  <proof prover="3"><result status="valid" time="0.05"/></proof>
+  </goal>
+  <goal name="VC rechercher_min.2" expl="postcondition" proved="true">
+  <proof prover="3"><result status="valid" time="0.02"/></proof>
+  </goal>
+  <goal name="VC rechercher_min.3" expl="postcondition" proved="true">
+  <transf name="split_all_full" proved="true" >
+   <goal name="VC rechercher_min.3.0" expl="VC for rechercher_min" proved="true">
+   <proof prover="3"><result status="valid" time="0.02"/></proof>
+   </goal>
+   <goal name="VC rechercher_min.3.1" expl="VC for rechercher_min" proved="true">
+   <proof prover="3"><result status="valid" time="0.03"/></proof>
+   </goal>
+   <goal name="VC rechercher_min.3.2" expl="VC for rechercher_min" proved="true">
+   <proof prover="3"><result status="valid" time="0.03"/></proof>
+   </goal>
+   <goal name="VC rechercher_min.3.3" expl="VC for rechercher_min" proved="true">
+   <proof prover="3"><result status="valid" time="0.09"/></proof>
+   </goal>
+  </transf>
+  </goal>
+  <goal name="VC rechercher_min.4" expl="postcondition" proved="true">
+  <transf name="split_vc" proved="true" >
+   <goal name="VC rechercher_min.4.0" expl="VC for rechercher_min" proved="true">
+   <proof prover="3"><result status="valid" time="0.03"/></proof>
+   </goal>
+   <goal name="VC rechercher_min.4.1" expl="VC for rechercher_min" proved="true">
+   <proof prover="3"><result status="valid" time="0.03"/></proof>
+   </goal>
+   <goal name="VC rechercher_min.4.2" expl="VC for rechercher_min" proved="true">
+   <proof prover="3"><result status="valid" time="0.17"/></proof>
+   </goal>
+   <goal name="VC rechercher_min.4.3" expl="VC for rechercher_min" proved="true">
+   <proof prover="2"><result status="valid" time="0.00" steps="267"/></proof>
+   </goal>
+  </transf>
+  </goal>
+ </transf>
+ </goal>
+ <goal name="VC rechercher_max" expl="VC for rechercher_max" proved="true">
+ <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+ <proof prover="2" obsolete="true"><result status="timeout" time="1.00"/></proof>
+ <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+ <transf name="split_all_full" proved="true" >
+  <goal name="VC rechercher_max.0" expl="variant decrease" proved="true">
+  <proof prover="3"><result status="valid" time="0.05"/></proof>
+  </goal>
+  <goal name="VC rechercher_max.1" expl="precondition" proved="true">
+  <proof prover="3"><result status="valid" time="0.06"/></proof>
+  </goal>
+  <goal name="VC rechercher_max.2" expl="postcondition" proved="true">
+  <proof prover="3"><result status="valid" time="0.03"/></proof>
+  </goal>
+  <goal name="VC rechercher_max.3" expl="postcondition" proved="true">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="3"><result status="valid" time="0.15"/></proof>
+  </goal>
+  <goal name="VC rechercher_max.4" expl="postcondition" proved="true">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <transf name="split_all_full" proved="true" >
+   <goal name="VC rechercher_max.4.0" expl="VC for rechercher_max" proved="true">
+   <proof prover="3"><result status="valid" time="0.03"/></proof>
+   </goal>
+   <goal name="VC rechercher_max.4.1" expl="VC for rechercher_max" proved="true">
+   <proof prover="3"><result status="valid" time="0.03"/></proof>
+   </goal>
+   <goal name="VC rechercher_max.4.2" expl="VC for rechercher_max" proved="true">
+   <proof prover="3"><result status="valid" time="0.04"/></proof>
+   </goal>
+   <goal name="VC rechercher_max.4.3" expl="VC for rechercher_max" proved="true">
+   <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+   <proof prover="2" obsolete="true"><result status="timeout" time="1.00"/></proof>
+   <proof prover="3"><result status="valid" time="0.04"/></proof>
+   </goal>
+   <goal name="VC rechercher_max.4.4" expl="VC for rechercher_max" proved="true">
+   <proof prover="3"><result status="valid" time="0.04"/></proof>
+   </goal>
+   <goal name="VC rechercher_max.4.5" expl="VC for rechercher_max" proved="true">
+   <proof prover="3"><result status="valid" time="0.04"/></proof>
+   </goal>
+   <goal name="VC rechercher_max.4.6" expl="VC for rechercher_max" proved="true">
+   <proof prover="3"><result status="valid" time="0.07"/></proof>
+   </goal>
+   <goal name="VC rechercher_max.4.7" expl="VC for rechercher_max" proved="true">
+   <proof prover="3"><result status="valid" time="0.15"/></proof>
+   </goal>
+  </transf>
+  </goal>
+ </transf>
+ </goal>
+ <goal name="VC inserer" expl="VC for inserer" proved="true">
+ <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+ <proof prover="2" obsolete="true"><result status="timeout" time="1.00"/></proof>
+ <proof prover="3" obsolete="true"><result status="timeout" time="2.00"/></proof>
+ <transf name="split_vc" proved="true" >
+  <goal name="VC inserer.0" expl="variant decrease" proved="true">
+  <transf name="split_vc" proved="true" >
+   <goal name="VC inserer.0.0" expl="variant decrease" proved="true">
+   <proof prover="3"><result status="valid" time="0.03"/></proof>
+   </goal>
+   <goal name="VC inserer.0.1" expl="variant decrease" proved="true">
+   <proof prover="3"><result status="valid" time="0.01"/></proof>
+   </goal>
+  </transf>
+  </goal>
+  <goal name="VC inserer.1" expl="precondition" proved="true">
+  <proof prover="3"><result status="valid" time="0.32"/></proof>
+  </goal>
+  <goal name="VC inserer.2" expl="variant decrease" proved="true">
+  <transf name="split_vc" proved="true" >
+   <goal name="VC inserer.2.0" expl="variant decrease" proved="true">
+   <proof prover="3"><result status="valid" time="0.02"/></proof>
+   </goal>
+   <goal name="VC inserer.2.1" expl="variant decrease" proved="true">
+   <proof prover="3"><result status="valid" time="0.02"/></proof>
+   </goal>
+  </transf>
+  </goal>
+  <goal name="VC inserer.3" expl="precondition" proved="true">
+  <proof prover="3"><result status="valid" time="0.19"/></proof>
+  </goal>
+  <goal name="VC inserer.4" expl="postcondition" proved="true">
+  <transf name="split_vc" proved="true" >
+   <goal name="VC inserer.4.0" expl="postcondition" proved="true">
+   <proof prover="2"><result status="valid" time="0.01" steps="78"/></proof>
+   <proof prover="3"><result status="timeout" time="1.00"/></proof>
+   </goal>
+   <goal name="VC inserer.4.1" expl="postcondition" proved="true">
+   <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+   <proof prover="2"><result status="valid" time="0.05" steps="255"/></proof>
+   <proof prover="3"><result status="timeout" time="1.00"/></proof>
+   </goal>
+   <goal name="VC inserer.4.2" expl="postcondition" proved="true">
+   <proof prover="0" obsolete="true"><result status="valid" time="0.04"/></proof>
+   <proof prover="2"><result status="valid" time="0.06" steps="245"/></proof>
+   <proof prover="3"><result status="timeout" time="1.00"/></proof>
+   </goal>
+   <goal name="VC inserer.4.3" expl="postcondition" proved="true">
+   <proof prover="3"><result status="valid" time="0.02"/></proof>
+   </goal>
+  </transf>
+  </goal>
+  <goal name="VC inserer.5" expl="postcondition" proved="true">
+  <transf name="split_vc" proved="true" >
+   <goal name="VC inserer.5.0" expl="postcondition" proved="true">
+   <proof prover="3"><result status="valid" time="0.04"/></proof>
+   </goal>
+   <goal name="VC inserer.5.1" expl="postcondition" proved="true">
+   <proof prover="3"><result status="valid" time="0.03"/></proof>
+   </goal>
+   <goal name="VC inserer.5.2" expl="postcondition" proved="true">
+   <proof prover="3"><result status="valid" time="0.04"/></proof>
+   </goal>
+   <goal name="VC inserer.5.3" expl="postcondition" proved="true">
+   <proof prover="3"><result status="valid" time="0.03"/></proof>
+   </goal>
+  </transf>
+  </goal>
+  <goal name="VC inserer.6" expl="postcondition" proved="true">
+  <transf name="split_vc" proved="true" >
+   <goal name="VC inserer.6.0" expl="postcondition" proved="true">
+   <proof prover="3"><result status="valid" time="0.02"/></proof>
+   </goal>
+   <goal name="VC inserer.6.1" expl="postcondition" proved="true">
+   <proof prover="3"><result status="valid" time="0.04"/></proof>
+   </goal>
+   <goal name="VC inserer.6.2" expl="postcondition" proved="true">
+   <proof prover="3"><result status="valid" time="0.04"/></proof>
+   </goal>
+   <goal name="VC inserer.6.3" expl="postcondition" proved="true">
+   <proof prover="3"><result status="valid" time="0.03"/></proof>
+   </goal>
+  </transf>
+  </goal>
+  <goal name="VC inserer.7" expl="postcondition" proved="true">
+  <transf name="split_vc" proved="true" >
+   <goal name="VC inserer.7.0" expl="postcondition" proved="true">
+   <proof prover="3"><result status="valid" time="0.03"/></proof>
+   </goal>
+   <goal name="VC inserer.7.1" expl="postcondition" proved="true">
+   <proof prover="3"><result status="valid" time="0.05"/></proof>
+   </goal>
+   <goal name="VC inserer.7.2" expl="postcondition" proved="true">
+   <proof prover="3"><result status="valid" time="0.05"/></proof>
+   </goal>
+   <goal name="VC inserer.7.3" expl="postcondition" proved="true">
+   <proof prover="3"><result status="valid" time="0.02"/></proof>
+   </goal>
+  </transf>
+  </goal>
+ </transf>
+ </goal>
+ <goal name="VC supprimer_max" expl="VC for supprimer_max" proved="true">
+ <proof prover="2"><result status="valid" time="0.71" steps="1978"/></proof>
+ <proof prover="3"><result status="timeout" time="1.00"/></proof>
+ </goal>
+ <goal name="VC supprimer" expl="VC for supprimer">
+ <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+ <proof prover="2" obsolete="true"><result status="timeout" time="1.00"/></proof>
+ <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+ <transf name="split_vc" >
+  <goal name="VC supprimer.0" expl="variant decrease" proved="true">
+  <proof prover="3"><result status="valid" time="0.06"/></proof>
+  </goal>
+  <goal name="VC supprimer.1" expl="precondition" proved="true">
+  <proof prover="3"><result status="valid" time="0.05"/></proof>
+  </goal>
+  <goal name="VC supprimer.2" expl="variant decrease" proved="true">
+  <proof prover="3"><result status="valid" time="0.04"/></proof>
+  </goal>
+  <goal name="VC supprimer.3" expl="precondition" proved="true">
+  <proof prover="3"><result status="valid" time="0.15"/></proof>
+  </goal>
+  <goal name="VC supprimer.4" expl="variant decrease" proved="true">
+  <proof prover="3"><result status="valid" time="0.04"/></proof>
+  </goal>
+  <goal name="VC supprimer.5" expl="precondition" proved="true">
+  <proof prover="3"><result status="valid" time="0.07"/></proof>
+  </goal>
+  <goal name="VC supprimer.6" expl="variant decrease" proved="true">
+  <proof prover="3"><result status="valid" time="0.04"/></proof>
+  </goal>
+  <goal name="VC supprimer.7" expl="precondition" proved="true">
+  <proof prover="3"><result status="valid" time="0.28"/></proof>
+  </goal>
+  <goal name="VC supprimer.8" expl="precondition" proved="true">
+  <proof prover="3"><result status="valid" time="0.03"/></proof>
+  </goal>
+  <goal name="VC supprimer.9" expl="precondition" proved="true">
+  <proof prover="3"><result status="valid" time="0.16"/></proof>
+  </goal>
+  <goal name="VC supprimer.10" expl="postcondition">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  </goal>
+  <goal name="VC supprimer.11" expl="postcondition">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  </goal>
+  <goal name="VC supprimer.12" expl="postcondition">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  </goal>
+  <goal name="VC supprimer.13" expl="postcondition">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  </goal>
+ </transf>
+ </goal>
+</theory>
+<theory name="TP7tests" proved="true">
+ <goal name="VC test_rechercher_min1" expl="VC for test_rechercher_min1" proved="true">
+ <transf name="split_all_full" proved="true" >
+  <goal name="VC test_rechercher_min1.0" expl="precondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.01" steps="10"/></proof>
+  <proof prover="3"><result status="timeout" time="1.00"/></proof>
+  </goal>
+ </transf>
+ </goal>
+ <goal name="VC test_rechercher_min2" expl="VC for test_rechercher_min2" proved="true">
+ <transf name="split_all_full" proved="true" >
+  <goal name="VC test_rechercher_min2.0" expl="precondition" proved="true">
+  <proof prover="3"><result status="valid" time="0.06"/></proof>
+  </goal>
+ </transf>
+ </goal>
+ <goal name="VC test" expl="VC for test" proved="true">
+ <proof prover="0"><result status="valid" time="0.82"/></proof>
+ <proof prover="2"><result status="timeout" time="1.00"/></proof>
+ <proof prover="3"><result status="timeout" time="1.00"/></proof>
+ </goal>
+ <goal name="VC test_rechercher_min3" expl="VC for test_rechercher_min3" proved="true">
+ <transf name="split_all_full" proved="true" >
+  <goal name="VC test_rechercher_min3.0" expl="precondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.28" steps="1283"/></proof>
+  <proof prover="3"><result status="timeout" time="1.00"/></proof>
+  </goal>
+ </transf>
+ </goal>
+</theory>
+</file>
+</why3session>

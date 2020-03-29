@@ -99,83 +99,64 @@
   <proof prover="0"><result status="valid" time="0.03"/></proof>
   </goal>
   <goal name="VC tri_insertion_v0.4" expl="loop invariant init" proved="true">
-  <proof prover="0"><result status="valid" time="0.02"/></proof>
+  <proof prover="0"><result status="valid" time="0.03"/></proof>
   </goal>
   <goal name="VC tri_insertion_v0.5" expl="loop invariant init" proved="true">
   <proof prover="0"><result status="valid" time="0.02"/></proof>
-  <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
-  <proof prover="2" obsolete="true"><result status="timeout" time="1.00"/></proof>
   </goal>
-  <goal name="VC tri_insertion_v0.6" expl="loop invariant init" proved="true">
+  <goal name="VC tri_insertion_v0.6" expl="index in array bounds" proved="true">
   <proof prover="0"><result status="valid" time="0.04"/></proof>
   </goal>
-  <goal name="VC tri_insertion_v0.7" expl="loop invariant init" proved="true">
-  <proof prover="0"><result status="valid" time="0.02"/></proof>
+  <goal name="VC tri_insertion_v0.7" expl="index in array bounds" proved="true">
+  <proof prover="0"><result status="valid" time="0.04"/></proof>
   </goal>
-  <goal name="VC tri_insertion_v0.8" expl="loop invariant init" proved="true">
-  <proof prover="0"><result status="valid" time="0.03"/></proof>
+  <goal name="VC tri_insertion_v0.8" expl="index in array bounds" proved="true">
+  <proof prover="0"><result status="valid" time="0.04"/></proof>
   </goal>
   <goal name="VC tri_insertion_v0.9" expl="index in array bounds" proved="true">
   <proof prover="0"><result status="valid" time="0.04"/></proof>
   </goal>
-  <goal name="VC tri_insertion_v0.10" expl="index in array bounds" proved="true">
-  <proof prover="0"><result status="valid" time="0.04"/></proof>
-  </goal>
-  <goal name="VC tri_insertion_v0.11" expl="index in array bounds" proved="true">
-  <proof prover="0"><result status="valid" time="0.04"/></proof>
-  </goal>
-  <goal name="VC tri_insertion_v0.12" expl="index in array bounds" proved="true">
-  <proof prover="0"><result status="valid" time="0.04"/></proof>
-  </goal>
-  <goal name="VC tri_insertion_v0.13" expl="loop variant decrease" proved="true">
+  <goal name="VC tri_insertion_v0.10" expl="loop variant decrease" proved="true">
   <proof prover="0"><result status="valid" time="0.02"/></proof>
   </goal>
-  <goal name="VC tri_insertion_v0.14" expl="loop invariant preservation" proved="true">
+  <goal name="VC tri_insertion_v0.11" expl="loop invariant preservation" proved="true">
   <proof prover="0"><result status="valid" time="0.03"/></proof>
   </goal>
-  <goal name="VC tri_insertion_v0.15" expl="loop invariant preservation" proved="true">
+  <goal name="VC tri_insertion_v0.12" expl="loop invariant preservation" proved="true">
   <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="2"><result status="valid" time="0.02" steps="48"/></proof>
+  <proof prover="2"><result status="valid" time="0.02" steps="44"/></proof>
   </goal>
-  <goal name="VC tri_insertion_v0.16" expl="loop invariant preservation" proved="true">
-  <proof prover="0"><undone/></proof>
-  <proof prover="2"><result status="valid" time="0.04" steps="161"/></proof>
-  </goal>
-  <goal name="VC tri_insertion_v0.17" expl="loop invariant preservation" proved="true">
-  <proof prover="0"><undone/></proof>
-  <proof prover="2"><result status="valid" time="0.11" steps="245"/></proof>
-  </goal>
-  <goal name="VC tri_insertion_v0.18" expl="loop invariant preservation" proved="true">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
-  <proof prover="2"><result status="valid" time="0.64" steps="624"/></proof>
-  </goal>
-  <goal name="VC tri_insertion_v0.19" expl="loop invariant preservation" proved="true">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
-  <proof prover="2"><result status="valid" time="0.07" steps="240"/></proof>
-  </goal>
-  <goal name="VC tri_insertion_v0.20" expl="loop invariant preservation">
+  <goal name="VC tri_insertion_v0.13" expl="loop invariant preservation">
   <proof prover="0"><result status="timeout" time="1.00"/></proof>
   <proof prover="1"><result status="timeout" time="1.00"/></proof>
   <proof prover="2"><result status="timeout" time="1.00"/></proof>
   </goal>
-  <goal name="VC tri_insertion_v0.21" expl="loop invariant preservation" proved="true">
+  <goal name="VC tri_insertion_v0.14" expl="loop invariant preservation">
+  <proof prover="0"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00"/></proof>
+  <proof prover="2"><result status="timeout" time="1.00"/></proof>
+  </goal>
+  <goal name="VC tri_insertion_v0.15" expl="loop invariant preservation" proved="true">
   <proof prover="0"><result status="valid" time="0.02"/></proof>
   </goal>
-  <goal name="VC tri_insertion_v0.22" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.03"/></proof>
-  <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
-  <proof prover="2" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <goal name="VC tri_insertion_v0.16" expl="postcondition" proved="true">
+  <proof prover="0"><result status="valid" time="0.04"/></proof>
   </goal>
-  <goal name="VC tri_insertion_v0.23" expl="postcondition" proved="true">
+  <goal name="VC tri_insertion_v0.17" expl="postcondition" proved="true">
   <proof prover="0"><result status="valid" time="0.02"/></proof>
   </goal>
-  <goal name="VC tri_insertion_v0.24" expl="postcondition" proved="true">
+  <goal name="VC tri_insertion_v0.18" expl="postcondition" proved="true">
   <proof prover="0"><result status="valid" time="0.06"/></proof>
   </goal>
-  <goal name="VC tri_insertion_v0.25" expl="out of loop bounds" proved="true">
+  <goal name="VC tri_insertion_v0.19" expl="out of loop bounds" proved="true">
   <proof prover="0"><result status="valid" time="0.04"/></proof>
+  </goal>
+  <goal name="VC tri_insertion_v0.14" expl="loop invariant preservation">
+  <proof prover="0"><undone/></proof>
+  <proof prover="2"><result status="valid" time="0.04" steps="165"/></proof>
+  </goal>
+  <goal name="VC tri_insertion_v0.5" expl="loop invariant init">
+  <proof prover="0"><undone/></proof>
   </goal>
  </transf>
  </goal>
@@ -190,91 +171,66 @@
   <goal name="VC tri_insertion.1" expl="loop invariant init" proved="true">
   <proof prover="0"><result status="valid" time="0.04"/></proof>
   </goal>
-  <goal name="VC tri_insertion.2" expl="index in array bounds" proved="true">
+  <goal name="VC tri_insertion.2" expl="loop invariant init" proved="true">
+  <proof prover="0"><result status="valid" time="0.02"/></proof>
+  </goal>
+  <goal name="VC tri_insertion.3" expl="index in array bounds" proved="true">
   <proof prover="0"><result status="valid" time="0.04"/></proof>
   </goal>
-  <goal name="VC tri_insertion.3" expl="loop invariant init" proved="true">
-  <proof prover="0"><result status="valid" time="0.03"/></proof>
-  </goal>
   <goal name="VC tri_insertion.4" expl="loop invariant init" proved="true">
-  <proof prover="0"><result status="valid" time="0.02"/></proof>
+  <proof prover="0"><result status="valid" time="0.03"/></proof>
   </goal>
   <goal name="VC tri_insertion.5" expl="loop invariant init" proved="true">
   <proof prover="0"><result status="valid" time="0.02"/></proof>
-  <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
-  <proof prover="2" obsolete="true"><result status="timeout" time="1.00"/></proof>
   </goal>
-  <goal name="VC tri_insertion.6" expl="loop invariant init" proved="true">
+  <goal name="VC tri_insertion.6" expl="index in array bounds" proved="true">
+  <proof prover="0"><result status="valid" time="0.03"/></proof>
+  </goal>
+  <goal name="VC tri_insertion.7" expl="index in array bounds" proved="true">
   <proof prover="0"><result status="valid" time="0.04"/></proof>
   </goal>
-  <goal name="VC tri_insertion.7" expl="loop invariant init" proved="true">
-  <proof prover="0"><result status="valid" time="0.02"/></proof>
-  </goal>
-  <goal name="VC tri_insertion.8" expl="loop invariant init" proved="true">
-  <proof prover="0"><result status="valid" time="0.02"/></proof>
+  <goal name="VC tri_insertion.8" expl="index in array bounds" proved="true">
+  <proof prover="0"><result status="valid" time="0.04"/></proof>
   </goal>
   <goal name="VC tri_insertion.9" expl="index in array bounds" proved="true">
   <proof prover="0"><result status="valid" time="0.03"/></proof>
   </goal>
-  <goal name="VC tri_insertion.10" expl="index in array bounds" proved="true">
-  <proof prover="0"><result status="valid" time="0.04"/></proof>
-  </goal>
-  <goal name="VC tri_insertion.11" expl="index in array bounds" proved="true">
-  <proof prover="0"><result status="valid" time="0.04"/></proof>
-  </goal>
-  <goal name="VC tri_insertion.12" expl="index in array bounds" proved="true">
-  <proof prover="0"><result status="valid" time="0.03"/></proof>
-  </goal>
-  <goal name="VC tri_insertion.13" expl="loop variant decrease" proved="true">
+  <goal name="VC tri_insertion.10" expl="loop variant decrease" proved="true">
   <proof prover="0"><result status="valid" time="0.02"/></proof>
   </goal>
-  <goal name="VC tri_insertion.14" expl="loop invariant preservation" proved="true">
+  <goal name="VC tri_insertion.11" expl="loop invariant preservation" proved="true">
   <proof prover="0"><result status="valid" time="0.03"/></proof>
   </goal>
-  <goal name="VC tri_insertion.15" expl="loop invariant preservation" proved="true">
+  <goal name="VC tri_insertion.12" expl="loop invariant preservation" proved="true">
   <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="2"><result status="valid" time="0.01" steps="48"/></proof>
+  <proof prover="2"><result status="valid" time="0.01" steps="42"/></proof>
   </goal>
-  <goal name="VC tri_insertion.16" expl="loop invariant preservation" proved="true">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="2"><result status="valid" time="0.05" steps="161"/></proof>
-  </goal>
-  <goal name="VC tri_insertion.17" expl="loop invariant preservation" proved="true">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="2"><result status="valid" time="0.12" steps="263"/></proof>
-  </goal>
-  <goal name="VC tri_insertion.18" expl="loop invariant preservation" proved="true">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
-  <proof prover="2"><result status="valid" time="0.67" steps="624"/></proof>
-  </goal>
-  <goal name="VC tri_insertion.19" expl="loop invariant preservation" proved="true">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
-  <proof prover="2"><result status="valid" time="0.08" steps="255"/></proof>
-  </goal>
-  <goal name="VC tri_insertion.20" expl="loop invariant preservation">
+  <goal name="VC tri_insertion.13" expl="loop invariant preservation">
   <proof prover="0"><result status="timeout" time="1.00"/></proof>
   <proof prover="1"><result status="timeout" time="1.00"/></proof>
   <proof prover="2"><result status="timeout" time="1.00"/></proof>
   </goal>
-  <goal name="VC tri_insertion.21" expl="loop invariant preservation" proved="true">
+  <goal name="VC tri_insertion.14" expl="loop invariant preservation">
+  <proof prover="0"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00"/></proof>
+  <proof prover="2"><result status="timeout" time="1.00"/></proof>
+  </goal>
+  <goal name="VC tri_insertion.15" expl="loop invariant preservation">
+  <proof prover="0"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00"/></proof>
+  <proof prover="2"><result status="timeout" time="1.00"/></proof>
+  </goal>
+  <goal name="VC tri_insertion.16" expl="postcondition" proved="true">
+  <proof prover="0"><result status="timeout" time="1.00"/></proof>
+  <proof prover="2"><result status="valid" time="0.04" steps="145"/></proof>
+  </goal>
+  <goal name="VC tri_insertion.17" expl="postcondition" proved="true">
   <proof prover="0"><result status="valid" time="0.02"/></proof>
-  <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
-  <proof prover="2" obsolete="true"><result status="timeout" time="1.00"/></proof>
   </goal>
-  <goal name="VC tri_insertion.22" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.04"/></proof>
-  <proof prover="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
-  <proof prover="2" obsolete="true"><result status="timeout" time="1.00"/></proof>
-  </goal>
-  <goal name="VC tri_insertion.23" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.02"/></proof>
-  </goal>
-  <goal name="VC tri_insertion.24" expl="postcondition" proved="true">
+  <goal name="VC tri_insertion.18" expl="postcondition" proved="true">
   <proof prover="0"><result status="valid" time="0.04"/></proof>
   </goal>
-  <goal name="VC tri_insertion.25" expl="out of loop bounds" proved="true">
+  <goal name="VC tri_insertion.19" expl="out of loop bounds" proved="true">
   <proof prover="0"><result status="valid" time="0.04"/></proof>
   </goal>
  </transf>

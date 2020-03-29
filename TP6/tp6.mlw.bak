@@ -111,8 +111,7 @@ module TriEx2 (* EXERCICE 2 *)
         variant { !j }
         invariant{ 0<= !j <= i}
         invariant{ courant=t[!j]}
-        invariant{sorted_sub t 0 (!j)}
-        invariant{sorted_sub t (!j) (i)}
+        
         invariant{ permut_all (old t) t }
         invariant{forall k l :int.( 0<= k < !j < l<= i ) -> t[k] <= t[l] }
 

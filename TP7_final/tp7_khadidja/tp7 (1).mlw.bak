@@ -1,0 +1,235 @@
+module TP7
+  use int.Int
+  use int.MinMax
+  use option.Option
+  use bintree.Tree
+  use bintree.Occ (* pour utiliser (occ elt arbre) 
+                     et (mem elt arbre)         *)
+
+predicate estABR (a: tree int) =
+(forall x:int. mem x a -> occ x a = 1) /\
+(
+  match a with
+  |Empty -> true
+  |Node g e d -> estABR g /\ estABR d /\ ( forall y:int. mem y g -> e>y)
+  
+   /\ ( forall y:int. mem y d -> e<y)
+
+  end 
+) 
+    
+(* Rappel :
+   type option 'a = None | Some 'a   *)
+
+let rec  rechercher_min (a: tree int) : option int
+ variant{a} 
+ requires { estABR a}
+ (*ensures{let Some x=result in mem x a } *)
+ ensures { 
+   match a with
+   |Empty -> result =None
+   |Node Empty e Empty -> Some e =result
+   |Node Empty e _ -> Some e =result
+   |Node g _ Empty ->exists x:int. (mem x g) /\ (forall y:int. mem y a -> x<=y )/\ (Some x = result)
+   |Node g _ _  -> exists x:int. (mem x g) /\ (forall y:int. mem y a -> x<=y )/\ (Some x = result)
+   end
+ }
+=
+ match a with
+   |Empty -> None
+   |Node Empty e Empty -> Some e
+   |Node Empty e _ -> Some e
+   |Node g _ Empty ->  rechercher_min g
+   |Node g _ _ -> rechercher_min g 
+  
+    end
+
+
+let rec rechercher_max (a: tree int) : option int
+ variant{a} 
+ requires { estABR a}
+ (*ensures{let Some x=result in mem x a } *)
+ ensures { 
+   match a with
+   |Empty -> result =None
+   |Node Empty e Empty -> Some e =result
+   |Node _ e Empty -> Some e =result
+   |Node Empty _ d ->exists x:int. (mem x d) /\ (forall y:int. mem y a -> x >=y )/\ (Some x= result)
+   |Node _ _ d  -> exists x:int. (mem x d) /\ (forall y:int. mem y a -> x>=y )/\ (Some x= result)
+   end
+ }
+=
+ match a with
+   |Empty -> None
+   |Node Empty e Empty -> Some e
+   |Node _ e Empty -> Some e
+   |Node Empty _ d ->  rechercher_max d
+   |Node _ _ d -> rechercher_max d 
+  
+    end
+  
+
+(* Consigne à respecter pour inserer :
+   dans la spécification, utiliser occ, et non pas mem
+   (qui s'appelait contient en TD)                  *)   
+let rec inserer (a : tree int) (k : int) : tree int
+variant{a}
+ requires { estABR a }
+ ensures { estABR result }
+ ensures {occ k result  = 1   }
+ ensures { forall x:int. occ x a  =1 -> occ x result  =1}
+ ensures { forall x:int. occ x result =1 -> occ x a =1 \/ x=k}
+ =
+ let f = Node Empty k Empty  in 
+ match a with
+   |Empty -> Node Empty k Empty
+   
+   |Node Empty e Empty -> if e>k then Node f e Empty else 
+    (  if e<k then Node Empty e f else a )
+    
+   |Node g e Empty -> if e>k then Node ( inserer g k ) e Empty else
+   (  if e<k then  Node g e f else a )
+   
+   |Node Empty e d -> if e>k then Node f e d else 
+   (  if e<k then Node Empty e (inserer d k ) else a )
+   
+   |Node g e d -> if e>k then Node (inserer g k ) e d else 
+    (if e<k then Node g e (inserer d k) else a )
+  
+    end
+  
+  
+let rec supprimer_max (a: tree int) : (tree int, int)
+variant{a}
+ requires { estABR a }
+ requires {a <> Empty }
+ ensures { let p1,_ =result in estABR p1 }
+ ensures{ let p1,p2=result in occ p2 p1 =0}
+ ensures{ let _,p2=result in forall x:int. occ x a =1 -> p2>=x }
+ ensures{ let p1,p2=result in forall x:int. occ x p1 =1 -> p2>x }
+ ensures {let p1,p2=result in forall k:int. occ k a  =1 /\ k<>p2 -> occ k p1 =1}
+ ensures {let p1,p2=result in forall k:int. occ k p1 =1 -> occ k a =1}
+=
+match a with
+   |Empty -> absurd
+   
+   |Node Empty e Empty -> Empty,e
+    
+   |Node g e Empty -> g,e
+   
+   |Node Empty e d ->let p1,p2=supprimer_max d in (Node Empty e p1,p2)
+   
+   |Node g e d -> let p1,p2=supprimer_max d in Node g e p1,p2
+    
+ end    
+ 
+
+
+let rec supprimer (a : tree int) (x : int) : tree int
+ variant{a}
+ requires { estABR a }
+ ensures{ estABR result }
+ ensures { occ x result  = 0 }
+ ensures { forall k:int. occ k a  =1 /\ k<>x -> occ k result =1}
+ ensures { forall k:int. occ k result =1 -> occ k a =1}
+ =
+ match a with
+   |Empty -> Empty
+   
+   |Node Empty e Empty -> if e>x then a else 
+    (  if e<x then a else Empty )
+    
+   |Node g e Empty -> if e>x then Node ( supprimer g x ) e Empty else
+   (  if e<x then  Node g e Empty  else g )
+   
+   |Node Empty e d -> if e>x then Node Empty e d else 
+   (  if e<x then Node Empty e ( supprimer d x ) else d )
+   
+   |Node g e d -> if e>x then Node ( supprimer g x ) e d else 
+    (if e<x then Node g e ( supprimer d x ) 
+    else
+     let Some min=rechercher_min d in Node g min ( supprimer d min )
+     )
+
+end
+end 
+module TP7tests
+  use int.Int
+  use int.MinMax
+  use option.Option
+  use bintree.Tree
+  use TP7
+
+(* Ce test est à exécuter depuis un terminal,
+   avec la commande suivante :
+   
+why3 execute tp7.mlw TP7tests.test_rechercher_min1
+  
+  
+  Avec la version en ligne de why3 (mode trywhy3), il faut cliquer
+  sur la flèche vers la droite (juste à côté du bouton avec les 3 engrenages
+  utilisé pour exécuter les prouveurs.
+  
+*)
+
+  let test_rechercher_min1 () : option int = 
+  let a = Empty in 
+  rechercher_min a
+  
+  
+  let test_rechercher_max1 () : option int = 
+  let a = Empty in 
+  rechercher_max a
+  
+  let test_inserer1 () = 
+  let a = Empty in 
+  let arbre=inserer a 2 in 
+  assert{arbre = Node Empty 2 Empty}
+  
+  let test_rechercher_min2 () : option int = 
+  let a = Node Empty 5 Empty in 
+  rechercher_min a 
+  
+  let test_inserer2 () = 
+  let a = Node Empty 5 Empty in 
+  let f=Node Empty 2 Empty in
+  let arbre=inserer a 2 in 
+  assert{arbre = Node f 5 Empty}
+  
+   let test_rechercher_max2 () : option int = 
+  let a = Node Empty 5 Empty in 
+  rechercher_max a 
+  
+  let test_rechercher_min3 () : option int = 
+  let a = Node (Node (Node Empty 3 Empty) 5 (Node Empty 7 Empty))
+               10 (Node Empty 30 (Node Empty 40 Empty)) in 
+  rechercher_min a
+  
+ let test_rechercher_max3 () : option int = 
+  let a = Node (Node (Node Empty 3 Empty) 5 (Node Empty 7 Empty))
+               10 (Node Empty 30 (Node Empty 40 Empty)) in 
+  rechercher_max a
+(* à compléter pour tester les autres programmes du module TP7 *)
+
+
+
+
+
+(* CE QUI SUIT NE CONCERNE QUE LE MODE EN LIGNE try why3 *)
+
+(* Dans la version en ligne, le programme à exécuter doit s'appeler main.
+   Il faut donc modifier main ci-dessous pour exécuter les autres tests. *)
+
+(* Enlever le commentaire suivant si vous utilisez la version en ligne *)
+(* let main() =
+    test_rechercher_min1 ()   *)
+
+(* Réponse de why3:
+
+TP7tests.main returns type: option int result: None globals:
+
+rechercher_min1 renvoie donc bien la valeur attendue None. *)
+
+
+
+end

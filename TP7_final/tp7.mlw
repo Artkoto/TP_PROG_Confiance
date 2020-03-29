@@ -1,0 +1,280 @@
+module TP7
+  use int.Int
+  use int.MinMax
+  use option.Option
+  use bintree.Tree
+  use bintree.Occ (* pour utiliser (occ elt arbre) 
+                     et (mem elt arbre)         *)
+
+(* estABR *)
+predicate estABR (a: tree int) =
+(forall x:int. mem x a -> occ x a = 1) /\
+ match a with 
+        | Empty -> true
+        | Node g e d -> estABR g /\ estABR d /\
+                        (forall x:int. mem x g -> x<e) /\
+                        (forall y:int. mem y d -> e<y) 
+        end
+
+(* rechercher_min *)
+let rec rechercher_min (a: tree int) : option int
+ variant{a}
+ requires { estABR a}
+ ensures { match a with
+     | Empty -> result = None
+     | Node _ _ _ -> match result with
+         | None -> false
+         | Some e -> mem e a /\ (forall x:int. mem x a -> e<=x)
+         end
+     end}
+  =
+
+match a with 
+  |Empty -> None
+  |Node Empty e _ -> Some e
+  |Node g _ _ -> rechercher_min g
+
+  end
+
+(* rechercher_max *)
+let rec rechercher_max (a: tree int) : option int
+ variant{a}
+ requires { estABR a}
+ ensures { match a with
+     | Empty -> result = None
+     | Node _ _ _ -> match result with
+         | None -> false
+         | Some e -> mem e a /\ (forall x:int. mem x a -> e >= x)
+         end
+     end}
+  =
+
+match a with 
+  |Empty -> None
+  |Node _ e Empty -> Some e
+  |Node _ _ d ->  rechercher_max d
+
+  end
+
+  (* Inserer *)
+let rec inserer (a : tree int) (k : int) : tree int
+variant{a}
+ requires { estABR a }
+ ensures{estABR result}
+ ensures { 0 < occ k result  } 
+ ensures {forall i:int. 0 < occ i a -> 0 < occ i result}
+ ensures { forall i:int. 0 < occ i result -> 0 < occ i a \/ i = k }
+=
+
+match a with 
+  |Empty -> Node Empty k Empty
+  |Node g e d  -> 
+              if (k < e) then  Node (inserer g k) e d  
+              else if (k > e) then Node g e (inserer d k)
+              else a
+end
+(* supprimer_max *)
+let rec supprimer_max (a: tree int) : (tree int, int)
+variant {a}
+ requires { a <> Empty}
+ requires { estABR a }
+ ensures { let (arbr , _) = result  in  estABR arbr   }
+ ensures { let (arbr , maxi) = result  in  0 = occ maxi arbr  }
+ ensures { let (_ , maxi) = result  in  0 < occ maxi a  }
+ ensures { let (arbr , _) = result  in forall i:int. 0 < occ i arbr -> 0 < occ i a}
+ ensures { let (_ , maxi) = result  in forall i:int. 0 < occ i a -> i <= maxi}
+ ensures { let (arbr , maxi) = result  in forall i:int. 0 < occ i a -> 0 < occ i arbr \/  i = maxi }
+=
+match a with 
+  |Empty -> absurd
+  |Node g e Empty -> ( g  , e )
+  |Node g e d ->  let (arbre , eltMax) = supprimer_max d in
+                  ((Node g e arbre), eltMax)
+end
+
+let rec supprimer (a : tree int) (x : int) : tree int
+ variant {a}
+ requires { estABR a }
+ ensures {  estABR result   }
+ ensures{ occ x result = 0 }
+ ensures { forall i:int. 0 < occ i result -> 0 < occ i a}
+ ensures {  forall i:int. 0 < occ i a -> 0 < occ i result  \/  i = x }
+=
+match a with 
+  |Empty -> a
+  |Node Empty e Empty -> if e = x then Empty else a
+  |Node Empty e d -> 
+              if (x < e) then a 
+              else if (x > e) then Node Empty e (supprimer d x)
+              else d
+  |Node g e Empty -> 
+              if (x > e) then a 
+              else if (x < e) then Node (supprimer g x) e Empty
+              else g
+  |Node g e d ->  if (x < e) then  Node (supprimer g x) e d  
+              else if (x > e) then Node g e (supprimer d x)
+              else begin
+              let (arbr , maxi) = supprimer_max g in 
+              Node arbr maxi d 
+               end
+end
+
+end
+
+module TP7tests
+  use int.Int
+  use int.MinMax
+  use option.Option
+  use bintree.Tree
+  use bintree.Occ
+  use TP7
+
+(* Ce test est à exécuter depuis un terminal,
+   avec la commande suivante :
+
+why3 execute tp7.mlw TP7tests.test_rechercher_min1
+  
+*)
+
+ (* Testes pour rechercher_min *)
+  let test_rechercher_min1 () : option int = 
+  let a = Empty in 
+  rechercher_min a
+  
+  
+  let test_rechercher_min2 () : option int = 
+  let a = Node Empty 5 Empty in 
+  rechercher_min a
+
+  let test_direct1 ()=
+  let temp1 = rechercher_min (Node (Node (Node Empty 3 Empty) 5 (Node Empty 7 Empty))
+               10 (Node Empty 30 (Node Empty 40 Empty))) in 
+  assert {temp1 = Some 3 }
+  
+  let test_rechercher_min3 () : option int = 
+  let a = Node (Node (Node Empty 3 Empty) 5 (Node Empty 7 Empty))
+               10 (Node Empty 30 (Node Empty 40 Empty)) in 
+  rechercher_min a
+ 
+(* Testes pour rechercher_max *)
+
+  let test_rechercher_max1 () : option int = 
+  let a = Empty in 
+  rechercher_max a
+  
+  
+  let test_rechercher_max2 () : option int = 
+  let a = Node Empty 5 Empty in 
+  rechercher_max a
+
+  let test_direct2 ()=
+  let temp2 = rechercher_max (Node (Node (Node Empty 3 Empty) 5 (Node Empty 7 Empty))
+               10 (Node Empty 30 (Node Empty 40 Empty))) in 
+  assert {temp2 = Some 40 }
+  
+  let test_rechercher_max3 () : option int = 
+  let a = Node (Node (Node Empty 3 Empty) 5 (Node Empty 7 Empty))
+               10 (Node Empty 30 (Node Empty 40 Empty)) in 
+  rechercher_max a
+
+(* Testes pour inserer *)
+
+ let test_inserer1 () : tree int = 
+  let a = Empty in 
+  inserer a 12
+  
+  
+  let test_inserer2 () : tree int =  
+  let a = Node Empty 5 Empty in 
+  inserer a 3
+
+  let test_direct3 ()=
+  let temp3 = inserer (Node (Node (Node Empty 3 Empty) 5 (Node Empty 7 Empty))
+               10 (Node Empty 30 (Node Empty 40 Empty)))  19  in 
+               
+  assert {estABR temp3};
+  assert {0 < occ 19 temp3}
+  
+  let test_inserer3 () : tree int =  
+  let a = Node (Node (Node Empty 3 Empty) 5 (Node Empty 7 Empty))
+               10 (Node Empty 30 (Node Empty 40 Empty)) in 
+  inserer a 19
+
+(* inserer un element deja existant *)
+   let test_inserer4 () : tree int =  
+  let a = Node (Node (Node Empty 3 Empty) 5 (Node Empty 7 Empty))
+               10 (Node Empty 30 (Node Empty 40 Empty)) in 
+  inserer a 5
+
+(* Testes pour supprimer_max *)
+  let test_supprimer_max1 () : (tree int, int) =  
+  let a = Node Empty 5 Empty in 
+  supprimer_max a
+
+  let test_direct4 ()=
+  let temp4 = supprimer_max (Node (Node (Node Empty 3 Empty) 5 (Node Empty 7 Empty))
+               10 (Node Empty 30 (Node Empty 40 Empty)))  in 
+               
+  assert {let (arbr, _) = temp4 in estABR arbr};
+  assert {let (arbr, maxi) = temp4 in 0 = occ maxi arbr};
+  assert {let (arbr, maxi) = temp4 in forall i:int. mem i arbr -> i < maxi}
+
+  let test_supprimer_max2 () : (tree int, int) =  
+  let a = Node (Node (Node Empty 3 Empty) 5 (Node Empty 7 Empty))
+               10 (Node Empty 30 (Node Empty 40 Empty)) in 
+  supprimer_max a
+
+(* Testes pour supprimer *)
+ let test_supprimer1 () : tree int =  
+ (* arbre vide  *)
+  let a = Empty in 
+  supprimer a 4
+
+  (* supprimer un element quin'existe pas dans l'arbre *)
+  let test_supprimer2 () : tree int =  
+  let a = Node Empty 5 Empty in 
+  supprimer a 3
+
+  let test_direct ()=
+  let temp5 = supprimer (Node (Node (Node Empty 3 Empty) 5 (Node Empty 7 Empty))
+               10 (Node Empty 30 (Node Empty 40 Empty)))  5 in 
+               
+  assert { estABR temp5};
+  assert { 0 = occ 5 temp5}
+
+  let test_supprimer3 () : tree int =  
+  let a = Node (Node (Node Empty 3 Empty) 5 (Node Empty 7 Empty))
+               10 (Node Empty 30 (Node Empty 40 Empty)) in 
+  supprimer a 7
+
+(* on supprime la racine  *)
+   let test_supprimer4 () : tree int =  
+  let a = Node (Node (Node Empty 3 Empty) 5 (Node Empty 7 Empty))
+               10 (Node Empty 30 (Node Empty 40 Empty)) in 
+  supprimer a 10
+
+
+(* fin *)
+
+
+
+
+
+(* CE QUI SUIT NE CONCERNE QUE LE MODE EN LIGNE try why3 *)
+
+(* Dans la version en ligne, le programme à exécuter doit s'appeler main.
+   Il faut donc modifier main ci-dessous pour exécuter les autres tests. *)
+
+(* Enlever le commentaire suivant si vous utilisez la version en ligne *)
+(* let main() =
+    test_rechercher_min1 ()   *)
+
+(* Réponse de why3:
+
+TP7tests.main returns type: option int result: None globals:
+
+rechercher_min1 renvoie donc bien la valeur attendue None. *)
+
+
+
+end
